@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aragon AI — Custom AI Tools For Your Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:    #07080f;
+  --surface:  #0b0d18;
+  --card:     #0f1120;
+  --card2:    #111326;
+  --border:   rgba(255,255,255,0.08);
+  --blue:     #3b9eff;
+  --blue-dim: rgba(59,158,255,0.12);
+  --blue-bdr: rgba(59,158,255,0.3);
+  --teal:     #2ec4f0;
+  --white:    #ffffff;
+  --muted:    rgba(255,255,255,0.5);
+  --dim:      rgba(255,255,255,0.25);
+}
+
+body {
+  background: var(--black);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ── TOP BANNER ─────────────────────────────── */
+.top-banner {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(59,158,255,0.3), transparent 45%),
+    linear-gradient(90deg, #02030a 0%, #0b1024 48%, #02030a 100%);
+  text-align: center;
+  padding: 20px 20px 22px;
+  border-bottom: 1px solid rgba(59,158,255,0.25);
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.06), 0 16px 60px rgba(59,158,255,0.08);
+  position: relative;
+  overflow: hidden;
+}
+.top-banner::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(520px, 86vw);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(46,196,240,0.85), transparent);
+}
+.top-banner-main {
+  display: inline-block;
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(22px, 3.6vw, 40px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 0;
+  color: #fff;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ffffff 0%, #7fc7ff 48%, #2ec4f0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 34px rgba(59,158,255,0.28);
+}
+.top-banner-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 14px;
+  padding: 7px 12px;
+  border: 1px solid var(--blue-bdr);
+  border-radius: 999px;
+  color: #dff3ff;
+  background: rgba(59,158,255,0.12);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transform: translateY(-4px);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.top-banner-link:hover {
+  background: rgba(59,158,255,0.2);
+  border-color: rgba(46,196,240,0.5);
+  transform: translateY(-5px);
+}
+
+/* ── HEADER ──────────────────────────────────── */
+header {
+  background: #000;
+  border-bottom: 1px solid var(--border);
+  padding: 18px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.logo-img {
+  width: 64px; height: 64px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.logo-img img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.logo-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 26px;
+  font-weight: 500;
+  color: #fff;
+}
+.logo-name em { color: var(--blue); font-style: normal; }
+
+/* ── HERO ────────────────────────────────────── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 560px;
+  align-items: center;
+  padding: 60px 48px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+.hero-left { padding-right: 40px; }
+
+.hero-eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--blue);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero-headline {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(38px, 4.5vw, 56px);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.12;
+  letter-spacing: -1px;
+  margin-bottom: 22px;
+  color: #fff;
+}
+
+.hero-sub {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 420px;
+  margin-bottom: 32px;
+}
+
+.btn-blue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--blue);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.btn-blue:hover { opacity: 0.88; transform: translateY(-1px); }
+
+/* hero right image box */
+.hero-right {
+  position: relative;
+}
+.hero-img-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.hero-img-box img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── SECTION DIVIDER ─────────────────────────── */
+.section-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0 48px;
+}
+
+/* ── SERVICES ────────────────────────────────── */
+.services {
+  padding: 64px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.services-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  gap: 20px;
+}
+.services-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--blue);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.services-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 700;
+  color: #fff;
+}
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--blue-bdr);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  align-self: flex-end;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.btn-outline:hover { background: var(--blue-dim); }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.service-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 24px;
+  transition: border-color 0.2s, background 0.2s;
+  cursor: default;
+}
+.service-card:hover {
+  border-color: var(--blue-bdr);
+  background: var(--card2);
+}
+.service-card-icon {
+  width: 38px; height: 38px;
+  border-radius: 9px;
+  background: var(--blue-dim);
+  border: 1px solid var(--blue-bdr);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+}
+.service-card-icon svg { width: 18px; height: 18px; stroke: var(--blue); fill: none; stroke-width: 1.8; }
+.service-card h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  font-style: italic;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.service-card p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* ── HOW IT WORKS ────────────────────────────── */
+.hiw {
+  padding: 80px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.hiw-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.hiw-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--blue);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.hiw-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 14px;
+}
+.hiw-sub {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+.hiw-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+.hiw-steps::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: calc(12.5% + 20px);
+  right: calc(12.5% + 20px);
+  height: 1px;
+  background: linear-gradient(90deg, var(--blue-bdr), var(--blue), var(--blue-bdr));
+  z-index: 0;
+}
+.hiw-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 16px;
+  position: relative;
+  z-index: 1;
+}
+.hiw-step-num {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 2px solid var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 20px; font-weight: 800;
+  color: var(--blue);
+  margin-bottom: 24px;
+  box-shadow: 0 0 24px rgba(59,158,255,0.2);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.hiw-step:hover .hiw-step-num {
+  background: var(--blue-dim);
+  box-shadow: 0 0 36px rgba(59,158,255,0.35);
+}
+.hiw-step-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--blue-dim);
+  border: 1px solid var(--blue-bdr);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px;
+}
+.hiw-step-icon svg { width: 20px; height: 20px; stroke: var(--blue); fill: none; stroke-width: 1.8; }
+.hiw-step h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.hiw-step p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.hiw-step-tag {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--blue);
+  background: var(--blue-dim);
+  border: 1px solid var(--blue-bdr);
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+}
+.hiw-cta {
+  text-align: center;
+  margin-top: 56px;
+}
+.hiw-cta p {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+/* ── FREE TOOL QUIZ ──────────────────────────── */
+.quiz-section {
+  background: var(--black);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 76px 48px;
+}
+.section-kicker {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--blue);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 800;
+  line-height: 1.12;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 560px;
+  text-align: center;
+  margin: 0 auto;
+}
+.quiz-card {
+  width: min(100%, 920px);
+  margin: 56px auto 0;
+  background: rgba(15,17,32,0.9);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 40px 48px;
+}
+.quiz-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.quiz-progress {
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 34px;
+}
+.quiz-progress-bar {
+  width: 16.66%;
+  height: 100%;
+  background: var(--blue);
+  border-radius: inherit;
+  transition: width 0.2s ease;
+}
+.quiz-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--blue);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.quiz-question {
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 800;
+  line-height: 1.35;
+  color: #fff;
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+.quiz-options {
+  display: grid;
+  gap: 14px;
+}
+.quiz-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 64px;
+  padding: 16px 22px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.quiz-option:hover,
+.quiz-option.active {
+  border-color: var(--blue-bdr);
+  background: var(--blue-dim);
+}
+.quiz-option-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.28);
+  flex-shrink: 0;
+  position: relative;
+}
+.quiz-option.active .quiz-option-dot {
+  border-color: var(--blue);
+}
+.quiz-option.active .quiz-option-dot::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  background: var(--blue);
+  border-radius: inherit;
+}
+.quiz-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 36px;
+}
+.quiz-nav {
+  min-width: 132px;
+  justify-content: center;
+  align-self: auto;
+}
+.quiz-nav:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+.quiz-result {
+  display: none;
+  text-align: center;
+  padding: 18px 0 4px;
+}
+.quiz-result.is-visible {
+  display: block;
+}
+.quiz-result h3 {
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+.quiz-result p {
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto 26px;
+}
+.quiz-score {
+  color: var(--blue);
+}
+
+/* ── FREE RESOURCE ───────────────────────────── */
+.resource-section {
+  background: #05060c;
+  padding: 76px 48px 84px;
+}
+.resource-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.resource-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+.resource-header .section-kicker,
+.resource-header .section-title {
+  text-align: left;
+}
+.resource-header .section-title {
+  margin-bottom: 0;
+}
+.resource-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+.resource-filter {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 13px;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.resource-filter:hover,
+.resource-filter.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.tool-card {
+  min-height: 180px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 26px;
+  transition: border-color 0.2s, transform 0.2s, background 0.2s;
+}
+.tool-card:hover {
+  border-color: var(--blue-bdr);
+  background: var(--card2);
+  transform: translateY(-2px);
+}
+.tool-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.tool-icon {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: var(--blue-dim);
+  border: 1px solid var(--blue-bdr);
+  color: #eaf6ff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.tool-badge {
+  border: 1px solid var(--blue-bdr);
+  border-radius: 999px;
+  color: var(--blue);
+  background: var(--blue-dim);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 9px;
+}
+.tool-badge.paid {
+  border-color: rgba(239,159,39,0.45);
+  color: #ef9f27;
+  background: rgba(239,159,39,0.12);
+}
+.tool-card h3 {
+  font-size: 17px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.tool-card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.tool-card.is-hidden {
+  display: none;
+}
+
+/* ── BRAND STATEMENT ─────────────────────────── */
+.brand-statement {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 72px 48px;
+}
+.brand-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.brand-img {
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+.brand-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.brand-statement p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.55;
+  margin: 0 0 16px;
+}
+.brand-statement .sub {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  .brand-inner { grid-template-columns: 1fr; }
+}
+
+/* ── BOTTOM CTA ──────────────────────────────── */
+.bottom-cta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 72px 48px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.cta-left h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(32px, 4vw, 50px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 12px;
+  color: #fff;
+}
+.cta-left .cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid var(--blue-bdr);
+  padding-bottom: 2px;
+  margin-top: 8px;
+  transition: opacity 0.2s;
+}
+.cta-left .cta-link:hover { opacity: 0.75; }
+
+.cta-right {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 16/10;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.cta-right img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── FOOTER ──────────────────────────────────── */
+footer {
+  background: #000;
+  border-top: 1px solid var(--border);
+  padding: 28px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+footer .f-logo { font-size: 15px; font-weight: 500; color: var(--muted); }
+footer .f-logo em { color: var(--blue); font-style: normal; }
+footer .f-links { display: flex; gap: 20px; }
+footer .f-links a { font-size: 13px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+footer .f-links a:hover { color: var(--muted); }
+footer .f-copy { font-size: 12px; color: var(--dim); }
+
+/* animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-left  { animation: fadeUp 0.6s 0.05s ease both; }
+.hero-right { animation: fadeUp 0.6s 0.2s  ease both; }
+
+@media (max-width: 1050px) {
+  .tool-grid { grid-template-columns: repeat(2, 1fr); }
+  .resource-header { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 800px) {
+  header { padding: 14px 20px; }
+  .top-banner { padding: 18px 16px 20px; }
+  .top-banner-link { margin: 12px 0 0; transform: none; }
+  .top-banner-link:hover { transform: translateY(-1px); }
+  .hero, .bottom-cta { grid-template-columns: 1fr; padding: 40px 20px; }
+  .hero-right, .cta-right { display: none; }
+  .services { padding: 40px 20px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .hiw { padding: 48px 20px; }
+  .hiw-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .hiw-steps::before { display: none; }
+  .quiz-section, .resource-section { padding: 52px 20px; }
+  .quiz-card { padding: 28px 20px; }
+  .quiz-actions { align-items: stretch; flex-direction: column; }
+  .quiz-nav { width: 100%; }
+  .tool-grid { grid-template-columns: 1fr; }
+  .brand-statement { padding: 48px 20px; }
+  footer { padding: 20px; flex-direction: column; text-align: center; }
+  .section-divider { margin: 0 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BANNER -->
+<div class="top-banner">
+  <span class="top-banner-main">Custom AI tools built for your business</span>
+  <a href="#" class="top-banner-link">Connect &amp; Contact</a>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-wrap">
+    <div class="logo-img"><img src="AragonLogotransparent.png" alt="Aragon AI Logomark"></div>
+    <div class="logo-name">Aragon <em>AI</em></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section style="background: var(--black);">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Sound Familiar?</div>
+      <h1 class="hero-headline">
+        You're too busy running the business to stop and set anything up.
+      </h1>
+      <p class="hero-sub">
+        Let us help you, so you can focus on what you do best. We'll build the systems while you run the business. You keep growing. We handle the setup.
+      </p>
+      <a href="#" class="btn-blue">Get a Custom AI Plan</a>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-img-box">
+        <img src="Screenshot 2026-05-07 165942.png" alt="Business Growth">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SERVICES -->
+<section>
+  <div class="services">
+    <div class="services-header">
+      <div>
+        <div class="services-eyebrow">What we offer at Aragon AI</div>
+        <div class="services-title">Services Designed Around Your Business</div>
+      </div>
+      <a href="#" class="btn-outline">See what we can automate</a>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5h7M17.5 14v7"/></svg>
+        </div>
+        <h3>Custom Apps &amp; Systems</h3>
+        <p>We build tools that fit the way your business actually runs — no generic software, no workarounds. Just a system designed around you that your team will actually use.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </div>
+        <h3>Workflow Automation</h3>
+        <p>Stop doing the same tasks over and over. We automate the repetitive stuff — follow-ups, scheduling, data entry — so you get your time back and nothing falls through the cracks.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 8v1M12 15v1M8 12H7M17 12h-1"/></svg>
+        </div>
+        <h3>Personalized AI Systems</h3>
+        <p>AI that's trained on your business, not someone else's. We set up intelligent systems that handle customer questions, generate content, and support your team around the clock.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 16v5M8 21h8"/><path d="M3 8l9-6 9 6v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        </div>
+        <h3>AI Implementation</h3>
+        <p>Already heard about AI but not sure where to start? We handle everything — from finding the right tools to setting them up and making sure your team feels confident using them.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3>Business Websites</h3>
+        <p>A website that works as hard as you do. We design clean, fast sites built to convert visitors into leads — and we make sure it actually shows up when your customers go searching.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h3>AI Chatbots</h3>
+        <p>A friendly, 24/7 assistant that answers questions, qualifies leads, and books appointments — even while you sleep.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- HOW IT WORKS -->
+<section style="background: var(--surface);">
+  <div class="hiw">
+    <div class="hiw-header">
+      <div class="hiw-eyebrow">The process</div>
+      <div class="hiw-title">From first call to fully running — in 4 simple steps</div>
+      <p class="hiw-sub">No tech knowledge needed. No guesswork. We handle everything — you just show up to the calls.</p>
+    </div>
+
+    <div class="hiw-steps">
+      <div class="hiw-step">
+        <div class="hiw-step-num">1</div>
+        <div class="hiw-step-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <h3>Discovery Call</h3>
+        <p>We take the time to understand the systems your business already uses — your software, workflows, and operational processes — so we can build AI solutions that integrate seamlessly into the way you already work.</p>
+        <span class="hiw-step-tag">Free · 30 mins</span>
+      </div>
+
+      <div class="hiw-step">
+        <div class="hiw-step-num">2</div>
+        <div class="hiw-step-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h3>We Build It</h3>
+        <p>Our team designs and builds your custom AI system, automation, or chatbot — tailored exactly to your business. Zero effort required from you.</p>
+        <span class="hiw-step-tag">~2 weeks</span>
+      </div>
+
+      <div class="hiw-step">
+        <div class="hiw-step-num">3</div>
+        <div class="hiw-step-icon">
+          <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3>You Review &amp; Approve</h3>
+        <p>We walk you through everything we've built. You give feedback, we refine it until it's exactly right — no extra charge.</p>
+        <span class="hiw-step-tag">Your feedback</span>
+      </div>
+
+      <div class="hiw-step">
+        <div class="hiw-step-num">4</div>
+        <div class="hiw-step-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3>Go Live &amp; Grow</h3>
+        <p>Your system launches. We train your team, monitor performance, and stay on hand to support and improve it as your business grows.</p>
+        <span class="hiw-step-tag">Ongoing support</span>
+      </div>
+    </div>
+
+    <div class="hiw-cta">
+      <p>Ready to get started? The first call is completely free.</p>
+      <a href="#" class="btn-blue">Book your free strategy call &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- FREE TOOL QUIZ -->
+<section class="quiz-section">
+  <div class="section-kicker">Free tool</div>
+  <h2 class="section-title">How much time is your business wasting?</h2>
+  <p class="section-sub">Take our 60-second AI readiness quiz and find out exactly where AI could save you hours every week.</p>
+
+  <div class="quiz-card" data-quiz>
+    <div class="quiz-live">
+      <div class="quiz-meta">
+        <span data-quiz-count>Question 1 of 6</span>
+        <span data-quiz-percent>17%</span>
+      </div>
+      <div class="quiz-progress">
+        <div class="quiz-progress-bar" data-quiz-progress></div>
+      </div>
+      <div class="quiz-label" data-quiz-label>Question 1</div>
+      <div class="quiz-question" data-quiz-question>How many hours per week does your team spend on repetitive tasks like data entry, follow-up emails, or scheduling?</div>
+      <div class="quiz-options" data-quiz-options></div>
+      <div class="quiz-actions">
+        <button class="btn-outline quiz-nav" type="button" data-quiz-back disabled>&larr; Back</button>
+        <button class="btn-blue quiz-nav" type="button" data-quiz-next disabled>Next &rarr;</button>
+      </div>
+    </div>
+
+    <div class="quiz-result" data-quiz-result>
+      <div class="quiz-label">Your AI readiness score</div>
+      <h3>You could likely save <span class="quiz-score" data-quiz-score>10+ hours</span> every week.</h3>
+      <p data-quiz-copy>Your answers point to several workflows that could be automated quickly, especially admin tasks, follow-ups, scheduling, and customer communication.</p>
+      <a href="#" class="btn-blue">Get a Custom AI Plan</a>
+    </div>
+  </div>
+</section>
+
+<!-- FREE RESOURCE -->
+<section class="resource-section">
+  <div class="resource-inner">
+    <div class="resource-header">
+      <div>
+        <div class="section-kicker">Free resource</div>
+        <h2 class="section-title">The small business AI tools cheat sheet</h2>
+      </div>
+      <a href="#" class="btn-outline">Download the full PDF</a>
+    </div>
+
+    <div class="resource-filters" aria-label="Filter tools by category">
+      <button class="resource-filter active" type="button" data-filter="all">All tools</button>
+      <button class="resource-filter" type="button" data-filter="admin">Admin</button>
+      <button class="resource-filter" type="button" data-filter="marketing">Marketing</button>
+      <button class="resource-filter" type="button" data-filter="customer">Customer service</button>
+      <button class="resource-filter" type="button" data-filter="sales">Sales</button>
+      <button class="resource-filter" type="button" data-filter="content">Content</button>
+    </div>
+
+    <div class="tool-grid">
+      <article class="tool-card" data-category="content marketing admin">
+        <div class="tool-top"><span class="tool-icon">GPT</span><span class="tool-badge">Free plan</span></div>
+        <h3>ChatGPT</h3>
+        <p>Write emails, proposals, and content in seconds.</p>
+      </article>
+      <article class="tool-card" data-category="content admin">
+        <div class="tool-top"><span class="tool-icon">NB</span><span class="tool-badge">Free plan</span></div>
+        <h3>NotebookLM</h3>
+        <p>Research assistant for docs, links, videos, and source-grounded summaries.</p>
+      </article>
+      <article class="tool-card" data-category="content admin">
+        <div class="tool-top"><span class="tool-icon">CL</span><span class="tool-badge">Free plan</span></div>
+        <h3>Claude Code</h3>
+        <p>AI coding assistant for building, debugging, and editing projects.</p>
+      </article>
+      <article class="tool-card" data-category="admin sales marketing customer">
+        <div class="tool-top"><span class="tool-icon">ZP</span><span class="tool-badge">Free plan</span></div>
+        <h3>Zapier</h3>
+        <p>Connect your apps and automate repetitive workflows.</p>
+      </article>
+      <article class="tool-card" data-category="admin sales marketing customer">
+        <div class="tool-top"><span class="tool-icon">N8N</span><span class="tool-badge">Free plan</span></div>
+        <h3>n8n</h3>
+        <p>Build AI workflows and connect apps with flexible automation.</p>
+      </article>
+      <article class="tool-card" data-category="admin content">
+        <div class="tool-top"><span class="tool-icon">NT</span><span class="tool-badge paid">Paid</span></div>
+        <h3>Notion AI</h3>
+        <p>AI-powered notes, docs, and team knowledge base.</p>
+      </article>
+      <article class="tool-card" data-category="admin sales">
+        <div class="tool-top"><span class="tool-icon">CA</span><span class="tool-badge">Free plan</span></div>
+        <h3>Calendly</h3>
+        <p>Automated scheduling with fewer back-and-forth emails.</p>
+      </article>
+      <article class="tool-card" data-category="customer sales">
+        <div class="tool-top"><span class="tool-icon">TD</span><span class="tool-badge">Free plan</span></div>
+        <h3>Tidio</h3>
+        <p>AI chatbot for your website that answers questions 24/7.</p>
+      </article>
+      <article class="tool-card" data-category="customer sales">
+        <div class="tool-top"><span class="tool-icon">IC</span><span class="tool-badge paid">Paid</span></div>
+        <h3>Intercom</h3>
+        <p>Smart customer messaging and support automation.</p>
+      </article>
+      <article class="tool-card" data-category="sales marketing">
+        <div class="tool-top"><span class="tool-icon">IN</span><span class="tool-badge paid">Paid</span></div>
+        <h3>Instantly</h3>
+        <p>AI-powered cold email outreach at scale.</p>
+      </article>
+      <article class="tool-card" data-category="sales marketing">
+        <div class="tool-top"><span class="tool-icon">AP</span><span class="tool-badge">Free plan</span></div>
+        <h3>Apollo.io</h3>
+        <p>Find leads and automate your sales outreach.</p>
+      </article>
+      <article class="tool-card" data-category="content marketing">
+        <div class="tool-top"><span class="tool-icon">CV</span><span class="tool-badge">Free plan</span></div>
+        <h3>Canva AI</h3>
+        <p>Design social posts, ads, and presentations fast.</p>
+      </article>
+      <article class="tool-card" data-category="content">
+        <div class="tool-top"><span class="tool-icon">DS</span><span class="tool-badge">Free plan</span></div>
+        <h3>Descript</h3>
+        <p>Edit video and podcasts like a text document.</p>
+      </article>
+      <article class="tool-card" data-category="admin content">
+        <div class="tool-top"><span class="tool-icon">WF</span><span class="tool-badge">Free plan</span></div>
+        <h3>Whisper Flow</h3>
+        <p>Turn speech into polished text anywhere you write.</p>
+      </article>
+      <article class="tool-card" data-category="sales admin">
+        <div class="tool-top"><span class="tool-icon">HS</span><span class="tool-badge">Free plan</span></div>
+        <h3>HubSpot AI</h3>
+        <p>CRM with AI-powered email and pipeline tools.</p>
+      </article>
+      <article class="tool-card" data-category="admin customer sales">
+        <div class="tool-top"><span class="tool-icon">OC</span><span class="tool-badge">Open source</span></div>
+        <h3>OpenClaw</h3>
+        <p>Personal AI agent for email, calendar, chat, and local workflows.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- BRAND STATEMENT -->
+<section class="brand-statement">
+  <div class="brand-inner">
+    <div class="brand-img">
+      <img src="Screenshot 2026-05-07 170001.png" alt="AI Business Intelligence">
+    </div>
+    <div>
+      <p>We take the time to learn and understand your business, so that everything that is personalized and tailored to your brand.</p>
+      <p class="sub">Every tool we build is designed around how you actually work — not a generic template, not a one-size-fits-all solution. Just systems that make your business run better, faster, and smarter.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section style="background: var(--black);">
+  <div class="bottom-cta">
+    <div class="cta-left">
+      <h2>Do you want to save time, money, and brain power?</h2>
+      <a href="#" class="cta-link">
+        See what we can automate
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="cta-right">
+      <img src="Screenshot 2026-05-07 165953.png" alt="AI-Driven Growth">
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">Aragon <em>AI</em></div>
+  <div class="f-links">
+    <a href="#">Services</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <a href="#">Privacy Policy</a>
+  </div>
+  <div class="f-copy">&copy; 2026 Aragon AI. All rights reserved.</div>
+</footer>
+
+<script>
+const quizQuestions = [
+  {
+    question: 'How many hours per week does your team spend on repetitive tasks like data entry, follow-up emails, or scheduling?',
+    options: [
+      { text: 'Less than 2 hours', value: 1 },
+      { text: '2-5 hours', value: 2 },
+      { text: '5-10 hours', value: 3 },
+      { text: 'More than 10 hours', value: 4 }
+    ]
+  },
+  {
+    question: 'How often do leads or customer messages wait because your team is busy?',
+    options: [
+      { text: 'Almost never', value: 1 },
+      { text: 'A few times a month', value: 2 },
+      { text: 'Every week', value: 3 },
+      { text: 'Almost every day', value: 4 }
+    ]
+  },
+  {
+    question: 'How many different tools does your team use to run daily operations?',
+    options: [
+      { text: '1-2 tools', value: 1 },
+      { text: '3-5 tools', value: 2 },
+      { text: '6-9 tools', value: 3 },
+      { text: '10+ tools', value: 4 }
+    ]
+  },
+  {
+    question: 'How much time does your team spend copying information between systems?',
+    options: [
+      { text: 'Almost none', value: 1 },
+      { text: 'A little each week', value: 2 },
+      { text: 'Several hours each week', value: 3 },
+      { text: 'It is a major bottleneck', value: 4 }
+    ]
+  },
+  {
+    question: 'How consistent is your current follow-up process with leads and customers?',
+    options: [
+      { text: 'Very consistent', value: 1 },
+      { text: 'Mostly consistent', value: 2 },
+      { text: 'Hit or miss', value: 3 },
+      { text: 'We need a better system', value: 4 }
+    ]
+  },
+  {
+    question: 'What best describes your team\'s current AI setup?',
+    options: [
+      { text: 'We do not use AI yet', value: 4 },
+      { text: 'We use a few tools manually', value: 3 },
+      { text: 'We have some automations', value: 2 },
+      { text: 'AI is already part of our workflow', value: 1 }
+    ]
+  }
+];
+
+const quiz = document.querySelector('[data-quiz]');
+if (quiz) {
+  const live = quiz.querySelector('.quiz-live');
+  const result = quiz.querySelector('[data-quiz-result]');
+  const count = quiz.querySelector('[data-quiz-count]');
+  const percent = quiz.querySelector('[data-quiz-percent]');
+  const progress = quiz.querySelector('[data-quiz-progress]');
+  const label = quiz.querySelector('[data-quiz-label]');
+  const question = quiz.querySelector('[data-quiz-question]');
+  const optionsWrap = quiz.querySelector('[data-quiz-options]');
+  const backBtn = quiz.querySelector('[data-quiz-back]');
+  const nextBtn = quiz.querySelector('[data-quiz-next]');
+  const scoreText = quiz.querySelector('[data-quiz-score]');
+  const resultCopy = quiz.querySelector('[data-quiz-copy]');
+  const answers = new Array(quizQuestions.length).fill(null);
+  let activeQuestion = 0;
+
+  const renderQuiz = () => {
+    const current = quizQuestions[activeQuestion];
+    const completion = Math.round(((activeQuestion + 1) / quizQuestions.length) * 100);
+    count.textContent = `Question ${activeQuestion + 1} of ${quizQuestions.length}`;
+    percent.textContent = `${completion}%`;
+    progress.style.width = `${completion}%`;
+    label.textContent = `Question ${activeQuestion + 1}`;
+    question.textContent = current.question;
+    optionsWrap.innerHTML = '';
+
+    current.options.forEach((option, index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'quiz-option';
+      if (answers[activeQuestion] === index) button.classList.add('active');
+      button.innerHTML = `<span class="quiz-option-dot"></span><span>${option.text}</span>`;
+      button.addEventListener('click', () => {
+        answers[activeQuestion] = index;
+        renderQuiz();
+      });
+      optionsWrap.appendChild(button);
+    });
+
+    backBtn.disabled = activeQuestion === 0;
+    nextBtn.disabled = answers[activeQuestion] === null;
+    nextBtn.textContent = activeQuestion === quizQuestions.length - 1 ? 'See results →' : 'Next →';
+  };
+
+  const showResult = () => {
+    const total = answers.reduce((sum, answerIndex, questionIndex) => {
+      return sum + quizQuestions[questionIndex].options[answerIndex].value;
+    }, 0);
+
+    let hours = '5-10 hours';
+    let copy = 'Your answers show a few clear places where automation could reduce manual work and make daily follow-up more consistent.';
+
+    if (total >= 19) {
+      hours = '15+ hours';
+      copy = 'Your answers point to several high-impact workflows that could be automated quickly, especially admin tasks, handoffs, follow-ups, and customer communication.';
+    } else if (total >= 13) {
+      hours = '10+ hours';
+      copy = 'Your answers point to repeatable workflows where AI could save meaningful time each week without changing how your team already works.';
+    }
+
+    scoreText.textContent = hours;
+    resultCopy.textContent = copy;
+    live.style.display = 'none';
+    result.classList.add('is-visible');
+  };
+
+  backBtn.addEventListener('click', () => {
+    if (activeQuestion > 0) {
+      activeQuestion -= 1;
+      renderQuiz();
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (answers[activeQuestion] === null) return;
+    if (activeQuestion === quizQuestions.length - 1) {
+      showResult();
+      return;
+    }
+    activeQuestion += 1;
+    renderQuiz();
+  });
+
+  renderQuiz();
+}
+
+document.querySelectorAll('[data-filter]').forEach((filterButton) => {
+  filterButton.addEventListener('click', () => {
+    const filter = filterButton.dataset.filter;
+    document.querySelectorAll('[data-filter]').forEach((button) => {
+      button.classList.toggle('active', button === filterButton);
+    });
+    document.querySelectorAll('.tool-card').forEach((card) => {
+      const categories = card.dataset.category.split(' ');
+      card.classList.toggle('is-hidden', filter !== 'all' && !categories.includes(filter));
+    });
+  });
+});
+</script>
+
+</body>
+</html>
