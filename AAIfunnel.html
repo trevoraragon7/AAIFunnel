@@ -739,6 +739,175 @@ header {
   .brand-inner { grid-template-columns: 1fr; }
 }
 
+/* ── EXAMPLE PROJECT ─────────────────────────── */
+.project-example {
+  background: #05060c;
+  border-bottom: 1px solid var(--border);
+  padding: 78px 48px;
+}
+.project-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 58px;
+  align-items: center;
+}
+.project-kicker {
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.project-copy h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.14;
+  color: #fff;
+  margin-bottom: 18px;
+}
+.project-copy p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.75;
+  max-width: 560px;
+  margin-bottom: 22px;
+}
+.project-points {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+.project-point {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 12px;
+  align-items: flex-start;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.project-point span:first-child {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--blue-dim);
+  border: 1px solid var(--blue-bdr);
+  color: #dff3ff;
+  font-size: 13px;
+  font-weight: 800;
+}
+.project-point strong {
+  display: block;
+  color: #fff;
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+.project-visual {
+  background:
+    radial-gradient(circle at 80% 10%, rgba(59,158,255,0.18), transparent 34%),
+    var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.24);
+}
+.project-window {
+  background: rgba(0,0,0,0.28);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.project-window-top {
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--border);
+}
+.project-dots {
+  display: flex;
+  gap: 7px;
+}
+.project-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.18);
+}
+.project-status {
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.project-before-after {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+}
+.project-panel {
+  min-height: 310px;
+  background: rgba(15,17,32,0.96);
+  padding: 22px;
+}
+.project-panel h3 {
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+.pitch-line {
+  display: block;
+  height: 11px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  margin-bottom: 12px;
+}
+.pitch-line.short { width: 62%; }
+.pitch-line.mid { width: 82%; }
+.pitch-line.long { width: 100%; }
+.redacted {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: rgba(46,196,240,0.13);
+  border: 1px solid rgba(46,196,240,0.35);
+  color: #c7f0ff;
+  font-size: 11px;
+  font-weight: 800;
+  margin: 2px 5px 10px 0;
+}
+.clip-card {
+  border: 1px solid var(--blue-bdr);
+  border-radius: 10px;
+  background: var(--blue-dim);
+  padding: 14px;
+  margin-top: 18px;
+}
+.clip-card strong {
+  display: block;
+  color: #fff;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+.clip-card span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
 /* ── BOTTOM CTA ──────────────────────────────── */
 .bottom-cta {
   display: grid;
@@ -816,6 +985,7 @@ footer .f-copy { font-size: 12px; color: var(--dim); }
 @media (max-width: 1050px) {
   .tool-grid { grid-template-columns: repeat(2, 1fr); }
   .resource-header { align-items: flex-start; flex-direction: column; }
+  .project-inner { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 800px) {
@@ -836,6 +1006,9 @@ footer .f-copy { font-size: 12px; color: var(--dim); }
   .quiz-nav { width: 100%; }
   .tool-grid { grid-template-columns: 1fr; }
   .brand-statement { padding: 48px 20px; }
+  .project-example { padding: 52px 20px; }
+  .project-before-after { grid-template-columns: 1fr; }
+  .project-panel { min-height: auto; }
   footer { padding: 20px; flex-direction: column; text-align: center; }
   .section-divider { margin: 0 20px; }
 }
@@ -1155,6 +1328,73 @@ footer .f-copy { font-size: 12px; color: var(--dim); }
     <div>
       <p>We take the time to learn and understand your business, so that everything that is personalized and tailored to your brand.</p>
       <p class="sub">Every tool we build is designed around how you actually work — not a generic template, not a one-size-fits-all solution. Just systems that make your business run better, faster, and smarter.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXAMPLE PROJECT -->
+<section class="project-example">
+  <div class="project-inner">
+    <div class="project-copy">
+      <div class="project-kicker">Example project</div>
+      <h2>Slab turned real sales pitches into safer training material.</h2>
+      <p>Sales teams learn best from real conversations, but those pitches can include client names, pricing details, account notes, and other information that should not be shared broadly.</p>
+      <p>For Slab, we built a workflow that edits sales pitch material, removes sensitive details, and turns the cleaned version into training content reps can review and practice from.</p>
+      <div class="project-points">
+        <div class="project-point">
+          <span>1</span>
+          <div><strong>Clean the source material</strong>Find names, account details, pricing, and private context before training content is shared.</div>
+        </div>
+        <div class="project-point">
+          <span>2</span>
+          <div><strong>Edit for rep training</strong>Cut out noise, keep the useful selling moments, and organize examples around teachable pitch patterns.</div>
+        </div>
+        <div class="project-point">
+          <span>3</span>
+          <div><strong>Make it reusable</strong>Create safer clips and scripts that help new reps learn from real pitch structure without exposing sensitive information.</div>
+        </div>
+      </div>
+      <a href="https://calendly.com/trevor-aragoncpas/30min" class="btn-blue" target="_blank" rel="noopener">Build something like this</a>
+    </div>
+
+    <div class="project-visual" aria-label="Slab sales pitch cleanup workflow example">
+      <div class="project-window">
+        <div class="project-window-top">
+          <div class="project-dots" aria-hidden="true">
+            <span class="project-dot"></span>
+            <span class="project-dot"></span>
+            <span class="project-dot"></span>
+          </div>
+          <span class="project-status">Sensitive info removed</span>
+        </div>
+        <div class="project-before-after">
+          <div class="project-panel">
+            <h3>Raw pitch</h3>
+            <span class="pitch-line long"></span>
+            <span class="pitch-line mid"></span>
+            <span class="pitch-line short"></span>
+            <span class="redacted">Client name</span>
+            <span class="redacted">Pricing</span>
+            <span class="redacted">Account notes</span>
+            <span class="pitch-line long"></span>
+            <span class="pitch-line mid"></span>
+          </div>
+          <div class="project-panel">
+            <h3>Training version</h3>
+            <span class="pitch-line long"></span>
+            <span class="pitch-line mid"></span>
+            <span class="pitch-line short"></span>
+            <div class="clip-card">
+              <strong>Objection handling</strong>
+              <span>Cleaned example ready for onboarding, coaching, and sales practice.</span>
+            </div>
+            <div class="clip-card">
+              <strong>Pitch structure</strong>
+              <span>Useful moments preserved, private details removed before sharing.</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
