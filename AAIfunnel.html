@@ -973,6 +973,24 @@ footer .f-logo em { color: var(--blue); font-style: normal; }
 footer .f-links { display: flex; gap: 20px; }
 footer .f-links a { font-size: 13px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
 footer .f-links a:hover { color: var(--muted); }
+footer .f-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 13px;
+  border: 1px solid var(--blue-bdr);
+  border-radius: 8px;
+  background: var(--blue-dim);
+  color: #dff3ff;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+footer .f-contact:hover {
+  background: rgba(59,158,255,0.2);
+  border-color: rgba(46,196,240,0.5);
+}
 footer .f-copy { font-size: 12px; color: var(--dim); }
 
 /* animations */
@@ -1423,9 +1441,10 @@ footer .f-copy { font-size: 12px; color: var(--dim); }
   <div class="f-links">
     <a href="#">Services</a>
     <a href="#">About</a>
-    <a href="#">Contact</a>
+    <a href="mailto:trevor@aragonailab.com">Contact</a>
     <a href="privacy.html">Privacy Policy</a>
   </div>
+  <a class="f-contact" href="mailto:trevor@aragonailab.com">Email trevor@aragonailab.com</a>
   <div class="f-copy">&copy; 2026 Aragon AI. All rights reserved.</div>
 </footer>
 
