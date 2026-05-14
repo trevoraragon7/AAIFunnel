@@ -16,10 +16,10 @@
   --card:     #0f1120;
   --card2:    #111326;
   --border:   rgba(255,255,255,0.08);
-  --blue:     #3b9eff;
-  --blue-dim: rgba(59,158,255,0.12);
-  --blue-bdr: rgba(59,158,255,0.3);
-  --teal:     #2ec4f0;
+  --blue:     #ff3b4f;
+  --blue-dim: rgba(255,59,79,0.12);
+  --blue-bdr: rgba(255,59,79,0.32);
+  --teal:     #ff6b73;
   --white:    #ffffff;
   --muted:    rgba(255,255,255,0.5);
   --dim:      rgba(255,255,255,0.25);
@@ -29,18 +29,18 @@ body {
   background: var(--black);
   font-family: 'DM Sans', sans-serif;
   color: var(--white);
-  overflow-x: hidden;
+  overflow-x: hidden;ok
 }
 
 /* ── TOP BANNER ─────────────────────────────── */
 .top-banner {
   background:
-    radial-gradient(circle at 50% 0%, rgba(59,158,255,0.3), transparent 45%),
-    linear-gradient(90deg, #02030a 0%, #0b1024 48%, #02030a 100%);
+    radial-gradient(circle at 50% 0%, rgba(255,59,79,0.3), transparent 45%),
+    linear-gradient(90deg, #02030a 0%, #19080d 48%, #02030a 100%);
   text-align: center;
   padding: 20px 20px 22px;
-  border-bottom: 1px solid rgba(59,158,255,0.25);
-  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.06), 0 16px 60px rgba(59,158,255,0.08);
+  border-bottom: 1px solid rgba(255,59,79,0.25);
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.06), 0 16px 60px rgba(255,59,79,0.08);
   position: relative;
   overflow: hidden;
 }
@@ -52,7 +52,7 @@ body {
   width: min(520px, 86vw);
   height: 1px;
   transform: translateX(-50%);
-  background: linear-gradient(90deg, transparent, rgba(46,196,240,0.85), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,107,115,0.85), transparent);
 }
 .top-banner-main {
   display: inline-block;
@@ -63,11 +63,11 @@ body {
   letter-spacing: 0;
   color: #fff;
   text-transform: uppercase;
-  background: linear-gradient(90deg, #ffffff 0%, #7fc7ff 48%, #2ec4f0 100%);
+  background: linear-gradient(90deg, #ffffff 0%, #ff9aa4 48%, #ff3b4f 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 34px rgba(59,158,255,0.28);
+  text-shadow: 0 0 34px rgba(255,59,79,0.28);
 }
 .top-banner-link {
   display: inline-flex;
@@ -77,8 +77,8 @@ body {
   padding: 7px 12px;
   border: 1px solid var(--blue-bdr);
   border-radius: 999px;
-  color: #dff3ff;
-  background: rgba(59,158,255,0.12);
+  color: #ffe7eb;
+  background: rgba(255,59,79,0.12);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -88,8 +88,8 @@ body {
   transition: background 0.2s, border-color 0.2s, transform 0.2s;
 }
 .top-banner-link:hover {
-  background: rgba(59,158,255,0.2);
-  border-color: rgba(46,196,240,0.5);
+  background: rgba(255,59,79,0.2);
+  border-color: rgba(255,107,115,0.5);
   transform: translateY(-5px);
 }
 
@@ -109,7 +109,7 @@ header {
   gap: 14px;
 }
 .logo-img {
-  width: 64px; height: 64px;
+  width: 300px; height: 200px;
   border-radius: 8px;
   overflow: hidden;
   flex-shrink: 0;
@@ -369,12 +369,12 @@ header {
   font-size: 20px; font-weight: 800;
   color: var(--blue);
   margin-bottom: 24px;
-  box-shadow: 0 0 24px rgba(59,158,255,0.2);
+  box-shadow: 0 0 24px rgba(255,59,79,0.2);
   transition: background 0.2s, box-shadow 0.2s;
 }
 .hiw-step:hover .hiw-step-num {
   background: var(--blue-dim);
-  box-shadow: 0 0 36px rgba(59,158,255,0.35);
+  box-shadow: 0 0 36px rgba(255,59,79,0.35);
 }
 .hiw-step-icon {
   width: 40px; height: 40px;
@@ -663,7 +663,7 @@ header {
   border-radius: 9px;
   background: var(--blue-dim);
   border: 1px solid var(--blue-bdr);
-  color: #eaf6ff;
+  color: #ffe7eb;
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.02em;
@@ -800,7 +800,7 @@ header {
   border-radius: 8px;
   background: var(--blue-dim);
   border: 1px solid var(--blue-bdr);
-  color: #dff3ff;
+  color: #ffe7eb;
   font-size: 13px;
   font-weight: 800;
 }
@@ -812,7 +812,7 @@ header {
 }
 .project-visual {
   background:
-    radial-gradient(circle at 80% 10%, rgba(59,158,255,0.18), transparent 34%),
+    radial-gradient(circle at 80% 10%, rgba(255,59,79,0.18), transparent 34%),
     var(--card);
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -883,9 +883,9 @@ header {
   min-height: 24px;
   padding: 0 9px;
   border-radius: 999px;
-  background: rgba(46,196,240,0.13);
-  border: 1px solid rgba(46,196,240,0.35);
-  color: #c7f0ff;
+  background: rgba(255,107,115,0.13);
+  border: 1px solid rgba(255,107,115,0.35);
+  color: #ffe7eb;
   font-size: 11px;
   font-weight: 800;
   margin: 2px 5px 10px 0;
@@ -981,15 +981,15 @@ footer .f-contact {
   border: 1px solid var(--blue-bdr);
   border-radius: 8px;
   background: var(--blue-dim);
-  color: #dff3ff;
+  color: #ffe7eb;
   font-size: 13px;
   font-weight: 500;
   text-decoration: none;
   transition: background 0.2s, border-color 0.2s;
 }
 footer .f-contact:hover {
-  background: rgba(59,158,255,0.2);
-  border-color: rgba(46,196,240,0.5);
+  background: rgba(255,59,79,0.2);
+  border-color: rgba(255,107,115,0.5);
 }
 footer .f-copy { font-size: 12px; color: var(--dim); }
 
@@ -1044,7 +1044,7 @@ footer .f-copy { font-size: 12px; color: var(--dim); }
 <!-- HEADER -->
 <header>
   <div class="logo-wrap">
-    <div class="logo-img"><img src="AragonLogotransparent.png" alt="Aragon AI Logomark"></div>
+    <div class="logo-img"><img src="Logo/Aragon_AI_Lab_Matched (1).png" alt="Aragon AI Lab logo"></div>
     <div class="logo-name">Aragon <em>AI</em></div>
   </div>
 </header>
