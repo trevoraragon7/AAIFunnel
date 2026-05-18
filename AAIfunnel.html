@@ -968,11 +968,38 @@ footer {
   flex-wrap: wrap;
   gap: 12px;
 }
-footer .f-logo { font-size: 15px; font-weight: 500; color: var(--muted); }
-footer .f-logo em { color: var(--blue); font-style: normal; }
-footer .f-links { display: flex; gap: 20px; }
-footer .f-links a { font-size: 13px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
-footer .f-links a:hover { color: var(--muted); }
+footer .f-logo { font-size: 15px; font-weight: 500; color: #fff; }
+footer .f-logo em { color: #fff; font-style: normal; }
+footer .f-links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+footer .f-links a { font-size: 13px; color: #fff; text-decoration: none; transition: color 0.2s; }
+footer .f-links a:hover { color: #ffe7eb; }
+footer .f-socials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+footer .f-socials a {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+footer .f-socials a:hover {
+  color: #fff;
+  border-color: var(--blue-bdr);
+  background: var(--blue-dim);
+}
+footer .f-socials svg {
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+}
 footer .f-contact {
   display: inline-flex;
   align-items: center;
@@ -981,7 +1008,7 @@ footer .f-contact {
   border: 1px solid var(--blue-bdr);
   border-radius: 8px;
   background: var(--blue-dim);
-  color: #ffe7eb;
+  color: #fff;
   font-size: 13px;
   font-weight: 500;
   text-decoration: none;
@@ -991,7 +1018,7 @@ footer .f-contact:hover {
   background: rgba(255,59,79,0.2);
   border-color: rgba(255,107,115,0.5);
 }
-footer .f-copy { font-size: 12px; color: var(--dim); }
+footer .f-copy { font-size: 12px; color: #fff; }
 
 /* animations */
 @keyframes fadeUp {
@@ -1444,7 +1471,33 @@ footer .f-copy { font-size: 12px; color: var(--dim); }
     <a href="mailto:trevor@aragonailab.com">Contact</a>
     <a href="privacy.html">Privacy Policy</a>
   </div>
-  <a class="f-contact" href="mailto:trevor@aragonailab.com">Email trevor@aragonailab.com</a>
+  <div class="f-socials" aria-label="Social links">
+    <a href="https://www.instagram.com/aragonailab/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2Zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5ZM12 7.25A4.75 4.75 0 1 1 12 16.75 4.75 4.75 0 0 1 12 7.25Zm0 2A2.75 2.75 0 1 0 12 14.75 2.75 2.75 0 0 0 12 9.25Zm5.25-2.1a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z"/>
+      </svg>
+    </a>
+    <a href="https://www.linkedin.com/company/aragon-ailab" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.32 8.08h4.36V23H.32V8.08Zm7.28 0h4.18v2.04h.06c.58-1.1 2-2.26 4.12-2.26 4.4 0 5.22 2.9 5.22 6.66V23h-4.36v-7.52c0-1.8-.04-4.1-2.5-4.1-2.5 0-2.88 1.95-2.88 3.96V23H7.6V8.08Z"/>
+      </svg>
+    </a>
+    <a href="https://www.facebook.com/aragonailab" target="_blank" rel="noopener" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M22 12.06C22 6.48 17.52 2 11.94 2S2 6.48 2 12.06c0 5.04 3.68 9.22 8.5 9.98v-7.06H7.96v-2.92h2.54V9.84c0-2.5 1.5-3.88 3.78-3.88 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.62.77-1.62 1.56v1.88h2.76l-.44 2.92h-2.32v7.06c4.82-.76 8.36-4.94 8.36-9.98Z"/>
+      </svg>
+    </a>
+  </div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+    <a class="f-contact" href="mailto:trevor@aragonailab.com">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/></svg>
+      trevor@aragonailab.com
+    </a>
+    <a class="f-contact" href="tel:9512810070">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>
+      Call or Text (951) 281-0070
+    </a>
+  </div>
   <div class="f-copy">&copy; 2026 Aragon AI. All rights reserved.</div>
 </footer>
 
