@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're Booked! | Aragon AI</title>
+  <meta name="description" content="Your appointment with Aragon AI is confirmed. We look forward to speaking with you.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1296943205943670');
+  fbq('track', 'PageView');
+  fbq('track', 'Schedule');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1296943205943670&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --surface-soft: #edf7fc;
+      --surface-blue: #e2f3fb;
+      --ink: #111b29;
+      --muted: #5f7087;
+      --line: #dde6ef;
+      --blue: #2d9bd5;
+      --blue-dark: #1679ad;
+      --navy: #0d2742;
+      --green: #10b981;
+      --shadow: 0 18px 44px rgba(17, 27, 41, 0.1);
+      --soft-shadow: 0 8px 24px rgba(17, 27, 41, 0.08);
+      --max: 780px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── Header ── */
+    .site-header {
+      border-bottom: 1px solid var(--line);
+      background: rgba(247, 249, 251, 0.96);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      width: min(var(--max), calc(100% - 48px));
+      min-height: 68px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: #ffffff;
+      box-shadow: inset 0 0 0 1px var(--line);
+      overflow: hidden;
+      padding: 3px;
+    }
+
+    .brand-mark img { width: 100%; height: 100%; object-fit: contain; }
+    .brand span span { color: var(--blue); }
+
+    /* ── Main ── */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 64px 24px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 56px 52px;
+      width: min(var(--max), 100%);
+      text-align: center;
+    }
+
+    /* ── Check icon ── */
+    .check-wrap {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 32px;
+      box-shadow: 0 0 0 12px rgba(16, 185, 129, 0.1);
+    }
+
+    .check-wrap svg {
+      width: 40px;
+      height: 40px;
+      stroke: var(--green);
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── Typography ── */
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: rgba(16, 185, 129, 0.1);
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 800;
+      color: var(--navy);
+      margin: 0 0 16px;
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+
+    /* ── Next steps ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 44px;
+      text-align: left;
+    }
+
+    .step {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 22px 20px;
+    }
+
+    .step-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--surface-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .step-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--blue);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .step h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0 0 6px;
+      color: var(--ink);
+    }
+
+    .step p {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ── Actions ── */
+    .actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 13px 26px;
+      border-radius: 10px;
+      transition: background 0.18s, transform 0.14s;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+    }
+
+    .button:hover { background: var(--blue-dark); transform: translateY(-1px); }
+
+    .button-outline {
+      background: transparent;
+      color: var(--muted);
+      border: 1.5px solid var(--line);
+    }
+
+    .button-outline:hover {
+      background: var(--bg);
+      color: var(--ink);
+      border-color: var(--muted);
+      transform: translateY(-1px);
+    }
+
+    .button svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      border-top: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .footer-inner {
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+      padding: 28px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .footer-brand {
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .card { padding: 40px 24px; }
+      .steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="nav">
+      <a href="AAIwebsite.html" class="brand">
+        <span class="brand-mark"><img src="AragonLogotransparent.png" alt="Aragon AI Logomark"></span>
+        <span>Aragon <span>AI</span></span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="card">
+
+      <div class="check-wrap">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </div>
+
+      <span class="eyebrow">Appointment Confirmed</span>
+
+      <h1>You're on the calendar!</h1>
+
+      <p class="subtitle">
+        Thank you for booking — we're looking forward to connecting with you.
+        A confirmation email with all the details is on its way to your inbox.
+      </p>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          </div>
+          <h3>Check your email</h3>
+          <p>You'll receive a calendar invite and meeting link shortly.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          </div>
+          <h3>Come prepared</h3>
+          <p>Think of one workflow that feels too slow or too manual — we'll start there.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          </div>
+          <h3>Leave with a plan</h3>
+          <p>By the end of the call you'll have a clear next step, no strings attached.</p>
+        </div>
+
+      </div>
+
+      <div class="actions">
+        <a href="AAIwebsite.html" class="button button-outline">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          Back to Homepage
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="AAIwebsite.html" class="brand footer-brand">
+        Aragon <span style="color:var(--blue)">AI</span>
+      </a>
+      <span>© 2026 Aragon AI — Questions? <a href="mailto:trevor@aragoncpas.com" style="color:var(--blue)">trevor@aragoncpas.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>
