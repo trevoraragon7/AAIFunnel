@@ -3,6 +3,10 @@
     {
       "source": "/",
       "destination": "/AAIfunnel.html"
+    },
+    {
+      "source": "/booking-confirmed",
+      "destination": "/booking-confirmed.html"
     }
   ]
 }
