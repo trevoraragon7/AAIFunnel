@@ -32,31 +32,34 @@
   <style>
     /* ─── CSS VARIABLES ─── */
     :root {
-      --bg: #070810;
-      --surface: #0b0d1a;
-      --card: #101324;
-      --card2: #13162c;
-      --border: rgba(255,255,255,0.08);
-      --border-strong: rgba(255,255,255,0.13);
+      --bg: #07080f;
+      --surface: #0a0c18;
+      --card: #0f1222;
+      --card2: #131728;
+      --border: rgba(255,255,255,0.07);
+      --border-strong: rgba(255,255,255,0.12);
       --accent: #FF3B4F;
-      --accent-dim: rgba(255,59,79,0.10);
-      --accent-border: rgba(255,59,79,0.25);
-      --accent-glow: rgba(255,59,79,0.15);
-      --text: #F0F2F8;
-      --muted: rgba(240,242,248,0.55);
-      --dim: rgba(240,242,248,0.28);
-      --radius: 12px;
-      --radius-lg: 16px;
+      --accent-dim: rgba(255,59,79,0.08);
+      --accent-border: rgba(255,59,79,0.22);
+      --accent-glow: rgba(255,59,79,0.12);
+      --text: #EDEEF5;
+      --muted: rgba(237,238,245,0.52);
+      --dim: rgba(237,238,245,0.26);
+      --radius: 10px;
+      --radius-lg: 14px;
+      --section-pad: clamp(88px,10vw,120px);
     }
 
     /* ─── RESET & BASE ─── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
+      font-family: 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg);
+      background-image: radial-gradient(rgba(255,255,255,0.028) 1px, transparent 1px);
+      background-size: 30px 30px;
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
@@ -65,38 +68,34 @@
     button { font-family: inherit; }
 
     /* ─── LAYOUT ─── */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 clamp(20px, 4vw, 48px);
-    }
-    .section {
-      padding: clamp(72px, 8vw, 96px) 0;
-    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px,4vw,48px); }
+    .section { padding: var(--section-pad) 0; }
 
-    /* ─── TYPOGRAPHY ─── */
+    /* ─── TYPOGRAPHY SCALE ─── */
     .eyebrow {
       display: block;
+      font-family: 'Inter', sans-serif;
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.10em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
     .section-heading {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(30px, 3.5vw, 48px);
+      font-size: clamp(32px,3.8vw,52px);
       font-weight: 700;
-      line-height: 1.08;
+      line-height: 1.06;
+      letter-spacing: -1.5px;
       color: var(--text);
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
     .section-desc {
       font-size: 17px;
       color: var(--muted);
-      line-height: 1.65;
-      max-width: 560px;
+      line-height: 1.72;
+      max-width: 540px;
     }
 
     /* ─── BUTTONS ─── */
@@ -114,12 +113,10 @@
       border: none;
       cursor: pointer;
       text-decoration: none;
-      transition: opacity 0.2s, transform 0.15s;
+      transition: opacity 0.18s, transform 0.15s;
+      letter-spacing: -0.01em;
     }
-    .btn-primary:hover {
-      opacity: 0.88;
-      transform: translateY(-1px);
-    }
+    .btn-primary:hover { opacity: 0.87; transform: translateY(-1px); }
     .btn-secondary {
       display: inline-flex;
       align-items: center;
@@ -132,14 +129,11 @@
       padding: 13px 24px;
       border-radius: var(--radius);
       border: 1px solid var(--border-strong);
-      text-decoration: none;
-      transition: all 0.2s;
       cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.18s, color 0.18s;
     }
-    .btn-secondary:hover {
-      border-color: var(--accent-border);
-      color: var(--accent);
-    }
+    .btn-secondary:hover { border-color: var(--accent-border); color: var(--accent); }
 
     /* ─── CARDS ─── */
     .card {
@@ -149,24 +143,13 @@
       padding: 32px;
       transition: border-color 0.2s, background 0.2s;
     }
-    .card:hover {
-      border-color: var(--accent-border);
-      background: var(--card2);
-    }
+    .card:hover { border-color: var(--border-strong); background: var(--card2); }
 
     /* ─── ANIMATIONS ─── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50%       { transform: scale(1.3); opacity: 0.5; }
-    }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0.3; }
-    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(1.3); } }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.2; } }
+    @keyframes flow { to { stroke-dashoffset: -20; } }
 
     /* ════════════════════════════════════════
        NAV
@@ -176,7 +159,7 @@
       top: 0;
       z-index: 100;
       height: 68px;
-      background: rgba(7,8,16,0.92);
+      background: rgba(7,8,15,0.92);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
@@ -229,17 +212,8 @@
       background: var(--accent-dim);
       color: var(--text);
     }
-    .nav-social-link svg {
-      width: 14px;
-      height: 14px;
-      fill: currentColor;
-    }
-    .nav-divider {
-      width: 1px;
-      height: 28px;
-      background: var(--border-strong);
-      flex-shrink: 0;
-    }
+    .nav-social-link svg { width: 14px; height: 14px; fill: currentColor; }
+    .nav-divider { width: 1px; height: 28px; background: var(--border-strong); flex-shrink: 0; }
     .nav-contact {
       display: flex;
       flex-direction: column;
@@ -257,9 +231,7 @@
       transition: color 0.2s;
       line-height: 1.2;
     }
-    .nav-contact a:hover {
-      color: var(--text);
-    }
+    .nav-contact a:hover { color: var(--text); }
     .nav-contact svg {
       width: 11px;
       height: 11px;
@@ -268,56 +240,54 @@
       stroke-width: 2;
       flex-shrink: 0;
     }
-    .nav-cta {
-      padding: 10px 20px !important;
-      font-size: 14px !important;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
+    .nav-cta { padding: 10px 20px !important; font-size: 14px !important; white-space: nowrap; flex-shrink: 0; }
+    @media (max-width: 768px) { .nav-contact, .nav-divider { display: none; } }
+    @media (max-width: 480px) { .nav-brand-name { display: none; } }
 
     /* ════════════════════════════════════════
        HERO
     ════════════════════════════════════════ */
     .hero {
-      background: radial-gradient(ellipse 70% 50% at 50% -5%, rgba(255,59,79,0.13), transparent), var(--bg);
-      padding-top: clamp(80px, 10vw, 120px);
-      padding-bottom: clamp(80px, 10vw, 100px);
+      background: radial-gradient(ellipse 65% 55% at 55% 0%, rgba(255,59,79,0.11), transparent 60%), var(--bg);
+      padding: clamp(88px,10vw,128px) 0 clamp(80px,9vw,112px);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+      pointer-events: none;
     }
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 48px;
+      gap: 56px;
       align-items: center;
     }
-    .hero-content {
-      animation: fadeUp 0.6s 0.05s both;
-    }
+    .hero-content { animation: fadeUp 0.65s 0.05s both; }
     .hero-heading {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(40px, 5vw, 64px);
+      font-size: clamp(42px,5.5vw,72px);
       font-weight: 800;
-      line-height: 1.06;
-      margin-bottom: 24px;
+      line-height: 1.02;
+      letter-spacing: -2.5px;
       color: var(--text);
+      margin-bottom: 24px;
     }
+    .hero-heading em { font-style: normal; color: var(--accent); }
     .hero-sub {
       font-size: 17px;
       color: var(--muted);
-      line-height: 1.65;
-      max-width: 480px;
+      line-height: 1.7;
+      max-width: 460px;
       margin-bottom: 36px;
     }
-    .hero-ctas {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    .hero-trust {
-      margin-top: 28px;
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 36px; }
+    .hero-trust { display: flex; gap: 20px; flex-wrap: wrap; }
     .trust-item {
       display: flex;
       align-items: center;
@@ -325,191 +295,32 @@
       font-size: 13px;
       color: var(--muted);
     }
+    .trust-item-check { color: var(--accent); font-weight: 700; }
+
+    /* Hero Visual */
     .hero-visual {
-      animation: fadeUp 0.6s 0.2s both;
       position: relative;
+      animation: fadeUp 0.65s 0.18s both;
     }
-    .hero-glow {
-      position: absolute;
-      width: 80%;
-      height: 80%;
-      top: 10%;
-      left: 10%;
-      background: radial-gradient(circle, rgba(255,59,79,0.12), transparent);
-      filter: blur(50px);
-      z-index: 0;
-      pointer-events: none;
-    }
-    .dashboard-card {
+    .hero-visual-wrap {
       position: relative;
-      z-index: 1;
+      width: 100%;
+      aspect-ratio: 5/4;
       background: var(--card);
       border: 1px solid var(--border-strong);
       border-radius: var(--radius-lg);
       overflow: hidden;
+      padding: 28px;
     }
-    .dash-header {
-      padding: 13px 16px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .dash-dots {
-      display: flex;
-      gap: 6px;
-    }
-    .dash-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-    }
-    .dash-title {
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .dash-live {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--accent-dim);
-      border: 1px solid var(--accent-border);
-      border-radius: 999px;
-      padding: 4px 10px;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--accent);
-    }
-    .live-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: blink 1.5s infinite;
-    }
-    .dash-metrics {
-      padding: 14px 16px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      border-bottom: 1px solid var(--border);
-    }
-    .metric-chip {
-      background: var(--card2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 10px 12px;
-    }
-    .metric-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text);
-      display: block;
-    }
-    .metric-label {
-      font-size: 11px;
-      color: var(--muted);
-      display: block;
-      margin-top: 3px;
-    }
-    .dash-workflow {
-      padding: 16px;
-      border-bottom: 1px solid var(--border);
-    }
-    .workflow-label {
-      font-size: 10px;
-      color: var(--dim);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      display: block;
-    }
-    .workflow-nodes {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      overflow: hidden;
-    }
-    .wf-node {
-      background: var(--card2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 8px 12px;
-      font-size: 12px;
-      color: var(--muted);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .wf-node-ai {
-      display: flex;
-      align-items: center;
-    }
-    .wf-node-done {
-      color: var(--accent);
-    }
-    .wf-arrow {
-      flex: 1;
-      height: 1px;
-      background: var(--accent-border);
-      min-width: 16px;
-      position: relative;
-    }
-    .wf-arrow::after {
-      content: "›";
+    .hero-visual-wrap::before {
+      content: '';
       position: absolute;
-      right: -4px;
-      top: -9px;
-      color: var(--accent-border);
-      font-size: 14px;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(255,59,79,0.09), transparent 70%);
+      pointer-events: none;
     }
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse 1.5s infinite;
-      margin-right: 6px;
-      display: inline-block;
-      vertical-align: middle;
-      flex-shrink: 0;
-    }
-    .dash-activity {
-      padding: 14px 16px;
-    }
-    .activity-label {
-      font-size: 10px;
-      color: var(--dim);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      display: block;
-    }
-    .activity-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 7px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 12px;
-    }
-    .activity-row:last-child {
-      border-bottom: none;
-    }
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .activity-text {
-      flex: 1;
-      color: var(--muted);
-    }
-    .activity-time {
-      color: var(--dim);
-      font-size: 11px;
-    }
+    .workflow-svg { width: 100%; height: 100%; }
 
     /* ════════════════════════════════════════
        STATS BAR
@@ -518,177 +329,185 @@
       background: var(--surface);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 56px 0;
+      padding: 52px 0;
     }
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4,1fr);
     }
     .stat-item {
       text-align: center;
-      padding: 0 24px;
-      position: relative;
+      padding: 0 20px;
       border-right: 1px solid var(--border);
     }
-    .stat-item:last-child {
-      border-right: none;
-    }
+    .stat-item:last-child { border-right: none; }
     .stat-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(36px, 4vw, 52px);
-      font-weight: 700;
-      color: var(--text);
       display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(36px,4vw,52px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      color: var(--text);
       line-height: 1;
     }
     .stat-label {
-      font-size: 14px;
+      display: block;
+      font-size: 13px;
       color: var(--muted);
       margin-top: 8px;
-      display: block;
+      letter-spacing: 0.01em;
     }
 
     /* ════════════════════════════════════════
-       PROBLEM SECTION
+       PROBLEM SECTION — EDITORIAL SPLIT
     ════════════════════════════════════════ */
-    .problem-section {
-      background: var(--bg);
-    }
-    .problem-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-    .problem-header .section-desc {
-      margin: 0 auto;
-    }
-    .problem-grid {
+    .problem-section { background: var(--bg); }
+    .problem-layout {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      grid-template-columns: 2fr 3fr;
+      gap: 80px;
+      align-items: start;
     }
-    .problem-card {
+    .problem-left .section-desc { margin-bottom: 32px; }
+    .problem-link {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .problem-link:hover { opacity: 0.75; }
+    .problem-left-note {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .problem-rows {
       display: flex;
       flex-direction: column;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
     }
-    .problem-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: var(--accent-dim);
-      border: 1px solid var(--accent-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      flex-shrink: 0;
+    .problem-row {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 0;
+      align-items: start;
+      padding: 28px 28px 28px 0;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.18s;
     }
-    .problem-card h3 {
+    .problem-row:last-child { border-bottom: none; }
+    .problem-row:hover { background: var(--card); }
+    .problem-row-num {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 20px;
+      font-size: 13px;
       font-weight: 700;
-      margin-bottom: 12px;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      padding: 4px 0 0 28px;
     }
-    .problem-card p {
-      font-size: 15px;
+    .problem-row-content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+    .problem-row-content p {
+      font-size: 14px;
       color: var(--muted);
-      line-height: 1.65;
-    }
-    .problem-cta {
-      text-align: center;
-      margin-top: 40px;
-    }
-    .problem-cta p {
-      color: var(--muted);
-      font-size: 15px;
-      display: inline;
+      line-height: 1.68;
     }
 
     /* ════════════════════════════════════════
-       SERVICES
+       SERVICES — LARGE FEATURE CARDS
     ════════════════════════════════════════ */
     .services-section {
       background: var(--surface);
       border-top: 1px solid var(--border);
     }
-    .services-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-    .services-header .section-desc {
-      margin: 0 auto;
-    }
+    .services-header { text-align: center; margin-bottom: 64px; }
+    .services-header .section-desc { margin: 0 auto; }
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
     }
     .service-card {
-      padding: 36px 32px;
+      background: var(--card);
+      padding: 44px 36px;
       display: flex;
       flex-direction: column;
-      min-height: 280px;
+      transition: background 0.2s;
     }
+    .service-card:hover { background: var(--card2); }
     .service-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
-      background: var(--accent-dim);
-      border: 1px solid var(--accent-border);
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius);
+      background: var(--bg);
+      border: 1px solid var(--border-strong);
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
+      margin-bottom: 28px;
     }
     .service-card h3 {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 22px;
       font-weight: 700;
-      margin: 20px 0 12px;
+      color: var(--text);
+      margin-bottom: 14px;
+      letter-spacing: -0.4px;
     }
     .service-card p {
       font-size: 15px;
       color: var(--muted);
-      line-height: 1.7;
+      line-height: 1.72;
       flex: 1;
+      margin-bottom: 28px;
     }
     .service-link {
-      margin-top: 24px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-weight: 600;
       color: var(--accent);
+      font-size: 14px;
+      font-weight: 600;
       text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: auto;
+      transition: gap 0.15s;
     }
+    .service-link:hover { gap: 9px; }
 
     /* ════════════════════════════════════════
-       PROCESS
+       PROCESS — ARCHITECTURAL TIMELINE
     ════════════════════════════════════════ */
-    .process-section {
-      background: var(--bg);
-    }
-    .process-header {
-      text-align: center;
-      margin-bottom: 64px;
-    }
-    .process-header .section-desc {
-      margin: 0 auto;
-    }
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
+    .process-section { background: var(--bg); }
+    .process-header { text-align: center; margin-bottom: 72px; }
+    .process-header .section-desc { margin: 0 auto; }
+    .process-track {
       position: relative;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 0;
     }
-    .process-grid::before {
-      content: "";
+    .process-track::before {
+      content: '';
       position: absolute;
-      top: 35px;
-      left: calc(12.5% + 20px);
-      right: calc(12.5% + 20px);
+      top: 28px;
+      left: calc(12.5% + 14px);
+      right: calc(12.5% + 14px);
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,59,79,0.35), transparent);
+      background: linear-gradient(90deg, var(--accent-border), rgba(255,59,79,0.08), var(--accent-border));
       z-index: 0;
     }
     .process-step {
@@ -700,57 +519,54 @@
       position: relative;
       z-index: 1;
     }
-    .step-num {
-      width: 72px;
-      height: 72px;
+    .process-marker {
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
-      background: var(--card);
-      border: 2px solid var(--accent-border);
+      background: var(--bg);
+      border: 1.5px solid var(--accent-border);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 24px rgba(255,59,79,0.12);
-      margin-bottom: 24px;
+      margin-bottom: 28px;
+      position: relative;
+      box-shadow: 0 0 0 5px var(--bg);
+      flex-shrink: 0;
     }
-    .step-num span {
+    .process-marker-num {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 20px;
+      font-size: 15px;
       font-weight: 800;
       color: var(--accent);
+      letter-spacing: -0.5px;
     }
     .process-step h3 {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 17px;
       font-weight: 700;
-      margin-bottom: 10px;
       color: var(--text);
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
     }
     .process-step p {
       font-size: 14px;
       color: var(--muted);
       line-height: 1.65;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .step-badge {
       display: inline-block;
       background: var(--accent-dim);
       border: 1px solid var(--accent-border);
       border-radius: 999px;
-      padding: 4px 12px;
+      padding: 4px 14px;
       font-size: 11px;
       font-weight: 600;
       color: var(--accent);
       letter-spacing: 0.04em;
     }
-    .process-cta {
-      text-align: center;
-      margin-top: 56px;
-    }
-    .process-cta p {
-      font-size: 15px;
-      color: var(--muted);
-      margin-bottom: 20px;
-    }
+    .process-cta { text-align: center; margin-top: 64px; }
+    .process-cta p { font-size: 15px; color: var(--muted); margin-bottom: 20px; }
 
     /* ════════════════════════════════════════
        CASE STUDY
@@ -758,7 +574,6 @@
     .case-study-section {
       background: var(--surface);
       border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
     }
     .cs-grid {
       display: grid;
@@ -766,67 +581,63 @@
       gap: 64px;
       align-items: center;
     }
+    .cs-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
     .cs-block {
       margin-bottom: 24px;
       padding-bottom: 24px;
       border-bottom: 1px solid var(--border);
     }
-    .cs-block-last {
-      border-bottom: none;
-      margin-bottom: 28px;
-      padding-bottom: 0;
-    }
-    .cs-label {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin-bottom: 8px;
-      display: block;
-    }
-    .cs-block p {
-      font-size: 15px;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-    .cs-results {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 32px;
-    }
+    .cs-block:last-of-type { border-bottom: none; margin-bottom: 28px; }
+    .cs-block p { font-size: 15px; color: var(--muted); line-height: 1.75; }
+    .cs-results { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
     .result-pill {
-      background: var(--accent-dim);
-      border: 1px solid var(--accent-border);
+      background: rgba(34,197,94,0.07);
+      border: 1px solid rgba(34,197,94,0.2);
       border-radius: 999px;
-      padding: 8px 16px;
+      padding: 7px 16px;
       font-size: 13px;
       font-weight: 600;
-      color: var(--accent);
+      color: #4ade80;
     }
+    .cs-cta-link {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 14px;
+      border-bottom: 1px solid var(--accent-border);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .cs-cta-link:hover { opacity: 0.72; }
     .cs-visual {
-      background: var(--card);
-      border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       overflow: hidden;
+      border: 1px solid var(--border-strong);
+      background: var(--card);
     }
     .cs-win-top {
-      padding: 12px 16px;
+      padding: 13px 18px;
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    .cs-win-title {
-      font-size: 12px;
-      color: var(--muted);
-    }
+    .cs-win-dots { display: flex; gap: 6px; }
+    .cs-win-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .cs-win-title { font-size: 12px; color: var(--muted); }
     .cs-badge {
       background: var(--accent-dim);
       border: 1px solid var(--accent-border);
       border-radius: 999px;
-      padding: 4px 10px;
+      padding: 3px 10px;
       font-size: 11px;
       font-weight: 600;
       color: var(--accent);
@@ -837,186 +648,166 @@
       gap: 1px;
       background: var(--border);
     }
-    .cs-panel {
-      background: var(--card);
-      padding: 20px;
-    }
+    .cs-panel { background: var(--card); padding: 20px; }
     .cs-panel h4 {
-      font-size: 13px;
+      font-size: 12px;
+      font-weight: 600;
       color: var(--text);
       margin-bottom: 14px;
-      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
     }
     .pitch-line {
-      height: 10px;
+      height: 9px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.1);
-      margin-bottom: 10px;
+      background: rgba(255,255,255,0.09);
+      margin-bottom: 9px;
     }
     .redacted-badge {
       display: inline-block;
-      background: rgba(255,59,79,0.12);
-      border: 1px solid rgba(255,59,79,0.3);
-      color: #ffe7eb;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 3px 10px;
+      background: rgba(255,59,79,0.10);
+      border: 1px solid rgba(255,59,79,0.25);
       border-radius: 999px;
-      margin: 3px 4px 10px 0;
+      color: rgba(255,200,200,0.8);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 9px;
+      margin: 2px 3px 8px 0;
     }
     .clean-card {
       border: 1px solid var(--accent-border);
       background: var(--accent-dim);
-      border-radius: 10px;
-      padding: 14px;
+      border-radius: var(--radius);
+      padding: 12px;
       margin-bottom: 10px;
     }
     .clean-card strong {
       display: block;
-      font-size: 13px;
-      color: var(--text);
-      margin-bottom: 5px;
-    }
-    .clean-card span {
       font-size: 12px;
-      color: var(--muted);
-      line-height: 1.5;
+      color: var(--text);
+      margin-bottom: 4px;
+      font-weight: 600;
     }
+    .clean-card span { font-size: 11px; color: var(--muted); line-height: 1.5; }
 
     /* ════════════════════════════════════════
-       WHY CHOOSE
+       TRUST / WHY CHOOSE
     ════════════════════════════════════════ */
-    .trust-section {
-      background: var(--bg);
-    }
-    .trust-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-    .trust-header .section-desc {
-      margin: 0 auto;
-    }
+    .trust-section { background: var(--bg); }
+    .trust-header { text-align: center; margin-bottom: 64px; }
+    .trust-header .section-desc { margin: 0 auto; }
     .trust-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(2,1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
     }
     .trust-card {
-      display: flex;
-      flex-direction: column;
+      background: var(--card);
+      padding: 44px 40px;
+      transition: background 0.2s;
     }
+    .trust-card:hover { background: var(--card2); }
     .trust-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: var(--accent-dim);
-      border: 1px solid var(--accent-border);
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius);
+      background: var(--bg);
+      border: 1px solid var(--border-strong);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 16px;
-      flex-shrink: 0;
+      margin-bottom: 24px;
     }
     .trust-card h3 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
-      margin-bottom: 10px;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
     }
-    .trust-card p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.65;
-    }
+    .trust-card p { font-size: 15px; color: var(--muted); line-height: 1.72; }
 
     /* ════════════════════════════════════════
-       TESTIMONIALS
+       TESTIMONIALS — ASYMMETRIC FEATURED
     ════════════════════════════════════════ */
     .testimonials-section {
       background: var(--surface);
       border-top: 1px solid var(--border);
     }
-    .testimonials-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-    .testimonials-grid {
+    .testimonials-header { text-align: center; margin-bottom: 56px; }
+    .testimonials-layout {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1.15fr 1fr;
       gap: 20px;
     }
+    .testimonials-right { display: flex; flex-direction: column; gap: 20px; }
     .testimonial-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      transition: border-color 0.2s;
       display: flex;
       flex-direction: column;
     }
-    .quote-icon {
-      margin-bottom: 16px;
-      color: var(--accent);
-      font-size: 32px;
+    .testimonial-card:hover { border-color: var(--border-strong); }
+    .testimonial-card.featured { padding: 44px; }
+    .quote-mark {
+      font-size: 40px;
       line-height: 1;
+      color: var(--accent-border);
+      margin-bottom: 18px;
       font-family: Georgia, serif;
     }
     .testimonial-text {
-      font-size: 15px;
+      font-size: 16px;
       color: var(--text);
-      line-height: 1.7;
-      margin-bottom: 20px;
-      font-style: italic;
+      line-height: 1.78;
       flex: 1;
+      margin-bottom: 28px;
+      font-style: italic;
+      font-weight: 400;
     }
+    .testimonial-text.small { font-size: 14px; line-height: 1.72; }
     .testimonial-author {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
+      margin-top: auto;
     }
     .author-avatar {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: var(--card2);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-strong);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       color: var(--accent);
       flex-shrink: 0;
     }
-    .author-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text);
-      display: block;
-    }
-    .author-role {
-      font-size: 12px;
-      color: var(--muted);
-      display: block;
-    }
+    .author-name { display: block; font-size: 14px; font-weight: 600; color: var(--text); }
+    .author-role { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
 
     /* ════════════════════════════════════════
        QUIZ
     ════════════════════════════════════════ */
-    .quiz-section {
-      background: var(--bg);
-    }
-    .quiz-header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-    .quiz-header .section-desc {
-      margin: 0 auto;
-    }
-    .quiz-wrap {
-      max-width: 860px;
-      margin: 0 auto;
-    }
+    .quiz-section { background: var(--bg); }
+    .quiz-header { text-align: center; margin-bottom: 48px; }
+    .quiz-header .section-desc { margin: 0 auto; }
+    .quiz-wrap { max-width: 800px; margin: 0 auto; }
     .quiz-card {
       background: var(--card);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-strong);
       border-radius: var(--radius-lg);
-      padding: clamp(28px, 4vw, 48px) clamp(24px, 4vw, 52px);
+      padding: clamp(28px,4vw,52px) clamp(24px,4vw,56px);
     }
     .quiz-meta {
       display: flex;
@@ -1026,45 +817,44 @@
       margin-bottom: 10px;
     }
     .quiz-progress {
-      height: 3px;
-      background: rgba(255,255,255,0.08);
+      height: 2px;
+      background: var(--border);
       border-radius: 999px;
       overflow: hidden;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
     .quiz-progress-bar {
       height: 100%;
       background: var(--accent);
       transition: width 0.3s ease;
+      border-radius: 999px;
     }
     .quiz-label {
-      display: block;
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.10em;
       text-transform: uppercase;
+      letter-spacing: 0.1em;
       color: var(--accent);
+      display: block;
       margin-bottom: 14px;
     }
     .quiz-question {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(18px, 2.2vw, 24px);
+      font-size: clamp(18px,2.2vw,24px);
       font-weight: 700;
       color: var(--text);
-      margin: 12px 0 24px;
+      margin-bottom: 24px;
       line-height: 1.3;
+      letter-spacing: -0.3px;
     }
-    .quiz-options {
-      display: grid;
-      gap: 12px;
-    }
+    .quiz-options { display: grid; gap: 10px; }
     .quiz-option {
       width: 100%;
       display: flex;
       align-items: center;
       gap: 16px;
-      min-height: 60px;
-      padding: 14px 20px;
+      min-height: 56px;
+      padding: 13px 18px;
       border: 1px solid var(--border);
       border-radius: var(--radius);
       background: transparent;
@@ -1073,102 +863,81 @@
       font-size: 15px;
       text-align: left;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: border-color 0.18s, background 0.18s;
     }
-    .quiz-option:hover,
-    .quiz-option.active {
+    .quiz-option:hover, .quiz-option.active {
       border-color: var(--accent-border);
       background: var(--accent-dim);
     }
     .quiz-option-dot {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.25);
+      border: 1.5px solid rgba(255,255,255,0.22);
       flex-shrink: 0;
       position: relative;
     }
-    .quiz-option.active .quiz-option-dot {
-      border-color: var(--accent);
-    }
+    .quiz-option.active .quiz-option-dot { border-color: var(--accent); }
     .quiz-option.active .quiz-option-dot::after {
-      content: "";
+      content: '';
       position: absolute;
       inset: 4px;
       background: var(--accent);
-      border-radius: inherit;
+      border-radius: 50%;
     }
     .quiz-actions {
       display: flex;
       justify-content: space-between;
       gap: 12px;
-      margin-top: 32px;
+      margin-top: 28px;
     }
     .quiz-actions .btn-secondary,
-    .quiz-actions .btn-primary {
-      min-width: 120px;
-      justify-content: center;
-    }
-    .quiz-actions .btn-secondary:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-    .quiz-actions .btn-primary:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-    .quiz-result {
-      display: none;
-      text-align: center;
-      padding: 20px 0;
-    }
-    .quiz-result.is-visible {
-      display: block;
-    }
+    .quiz-actions .btn-primary { min-width: 120px; justify-content: center; }
+    .quiz-actions .btn-secondary:disabled,
+    .quiz-actions .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+    .quiz-result { display: none; text-align: center; padding: 16px 0; }
+    .quiz-result.is-visible { display: block; }
     .quiz-result h3 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(24px, 3vw, 36px);
+      font-size: clamp(24px,3vw,36px);
       font-weight: 700;
       margin-bottom: 14px;
+      letter-spacing: -0.8px;
     }
     .quiz-result p {
-      font-size: 15px;
+      font-size: 16px;
       color: var(--muted);
       line-height: 1.7;
-      max-width: 560px;
+      max-width: 520px;
       margin: 0 auto 28px;
     }
+    .quiz-score { color: var(--accent); }
 
     /* ════════════════════════════════════════
        FINAL CTA
     ════════════════════════════════════════ */
     .final-cta-section {
-      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,59,79,0.08), transparent), var(--bg);
+      background: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(255,59,79,0.07), transparent 65%), var(--bg);
       border-top: 1px solid var(--border);
+      padding: clamp(96px,12vw,144px) 0;
     }
-    .cta-inner {
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto;
-    }
+    .cta-inner { text-align: center; max-width: 680px; margin: 0 auto; }
     .cta-inner h2 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(36px, 4.5vw, 58px);
+      font-size: clamp(36px,4.5vw,58px);
       font-weight: 800;
-      line-height: 1.06;
-      margin-bottom: 20px;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      color: var(--text);
+      margin-bottom: 22px;
     }
     .cta-inner > p {
       font-size: 18px;
       color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 40px;
+      line-height: 1.68;
+      margin-bottom: 44px;
     }
-    .cta-fine {
-      font-size: 13px;
-      color: var(--dim);
-      margin-top: 16px;
-    }
+    .cta-fine { font-size: 13px; color: var(--dim); margin-top: 18px; letter-spacing: 0.01em; }
 
     /* ════════════════════════════════════════
        FOOTER
@@ -1187,100 +956,49 @@
       padding-bottom: 32px;
       border-bottom: 1px solid var(--border);
     }
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .footer-brand-name {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .footer-nav {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-    .footer-nav a {
-      font-size: 13px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-nav a:hover {
-      color: var(--text);
-    }
-    .footer-social {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .footer-brand { display: flex; align-items: center; gap: 12px; }
+    .footer-brand-name { font-size: 15px; font-weight: 600; color: var(--text); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.18s; }
+    .footer-nav a:hover { color: var(--text); }
+    .footer-social { display: flex; gap: 10px; }
     .social-link {
       width: 34px;
       height: 34px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 8px;
       color: var(--muted);
       text-decoration: none;
-      transition: all 0.2s;
+      transition: all 0.18s;
     }
-    .social-link:hover {
-      border-color: var(--accent-border);
-      background: var(--accent-dim);
-      color: var(--text);
-    }
+    .social-link:hover { border-color: var(--accent-border); background: var(--accent-dim); color: var(--text); }
     .footer-bottom {
-      padding-top: 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 12px;
+      padding-top: 24px;
     }
-    .footer-copyright {
-      font-size: 12px;
-      color: var(--dim);
-    }
-    .footer-contact {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .footer-contact a {
-      font-size: 12px;
-      color: var(--dim);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-contact a:hover {
-      color: var(--muted);
-    }
+    .footer-copyright { font-size: 12px; color: var(--dim); }
+    .footer-contact { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-contact a { font-size: 12px; color: var(--dim); text-decoration: none; transition: color 0.18s; }
+    .footer-contact a:hover { color: var(--muted); }
 
     /* ════════════════════════════════════════
        RESPONSIVE
     ════════════════════════════════════════ */
     @media (max-width: 768px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-      .hero-visual {
-        display: none;
-      }
-      .nav-contact,
-      .nav-divider { display: none; }
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .stat-item:nth-child(2) {
-        border-right: none;
-      }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
       .stat-item:nth-child(3) {
-        border-right: 1px solid var(--border);
         border-top: 1px solid var(--border);
+        border-right: 1px solid var(--border);
         padding-top: 24px;
         margin-top: 24px;
       }
@@ -1289,68 +1007,39 @@
         padding-top: 24px;
         margin-top: 24px;
       }
-      .problem-grid {
-        grid-template-columns: 1fr;
-      }
+      .problem-layout { grid-template-columns: 1fr; gap: 40px; }
       .services-grid {
         grid-template-columns: 1fr;
+        background: transparent;
+        gap: 16px;
+        border-radius: 0;
       }
-      .process-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 32px;
-      }
-      .process-grid::before {
-        display: none;
-      }
-      .cs-grid {
-        grid-template-columns: 1fr;
-      }
-      .cs-visual {
-        display: none;
-      }
+      .service-card { border-radius: var(--radius-lg); border: 1px solid var(--border); }
+      .process-track { grid-template-columns: 1fr 1fr; }
+      .process-track::before { display: none; }
+      .cs-grid { grid-template-columns: 1fr; }
+      .cs-visual { display: none; }
       .trust-grid {
         grid-template-columns: 1fr;
+        background: transparent;
       }
-      .testimonials-grid {
-        grid-template-columns: 1fr;
-      }
-      .quiz-actions {
-        flex-direction: column;
-      }
-      .footer-top {
-        flex-direction: column;
-        text-align: center;
-      }
-      .footer-nav {
-        justify-content: center;
-      }
-      .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-      }
-      .footer-contact {
-        justify-content: center;
-      }
+      .trust-card { border-bottom: 1px solid var(--border); border-radius: 0; }
+      .testimonials-layout { grid-template-columns: 1fr; }
+      .quiz-actions { flex-direction: column; }
+      .footer-top { flex-direction: column; text-align: center; }
+      .footer-nav { justify-content: center; }
+      .footer-social { justify-content: center; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .footer-contact { justify-content: center; }
     }
     @media (max-width: 480px) {
       .nav-brand-name { display: none; }
-      .hero-trust {
-        gap: 12px;
-      }
-      .hero-ctas {
-        flex-direction: column;
-      }
+      .hero-heading { letter-spacing: -1.5px; }
+      .hero-ctas { flex-direction: column; }
       .hero-ctas .btn-primary,
-      .hero-ctas .btn-secondary {
-        justify-content: center;
-        text-align: center;
-      }
-      .cs-results {
-        flex-direction: column;
-      }
-      .process-grid {
-        grid-template-columns: 1fr;
-      }
+      .hero-ctas .btn-secondary { justify-content: center; text-align: center; }
+      .process-track { grid-template-columns: 1fr; }
+      .quiz-actions { flex-direction: column; }
     }
   </style>
 </head>
@@ -1363,16 +1052,13 @@
     <div class="container">
       <div class="nav-inner">
 
-        <!-- Brand -->
         <a href="/" class="nav-brand">
           <img src="Logo/Aragon_AI_Lab_Matched (1).png" height="36" style="object-fit:contain" alt="Aragon AI Lab Logo">
           <span class="nav-brand-name">Aragon AI Lab</span>
         </a>
 
-        <!-- Right side -->
         <div class="nav-right">
 
-          <!-- Social icons -->
           <div class="nav-socials">
             <a href="https://www.instagram.com/aragonailab/" target="_blank" rel="noopener" aria-label="Instagram" class="nav-social-link">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2Zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5ZM12 7.25A4.75 4.75 0 1 1 12 16.75 4.75 4.75 0 0 1 12 7.25Zm0 2A2.75 2.75 0 1 0 12 14.75 2.75 2.75 0 0 0 12 9.25Zm5.25-2.1a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z"/></svg>
@@ -1387,7 +1073,6 @@
 
           <div class="nav-divider"></div>
 
-          <!-- Contact -->
           <div class="nav-contact">
             <a href="tel:9512810070">
               <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>
@@ -1401,7 +1086,6 @@
 
           <div class="nav-divider"></div>
 
-          <!-- CTA -->
           <a href="https://go.oncehub.com/TrevorAragon?name=ADD_DYNAMIC_FIELD&email=ADD_DYNAMIC_FIELD&skip=1" target="_blank" class="btn-primary nav-cta">Book Free Call</a>
 
         </div>
@@ -1420,7 +1104,7 @@
         <div class="hero-content">
           <span class="eyebrow">AI Automation Agency</span>
           <h1 class="hero-heading">
-            Custom AI Systems That Save Your Business <span style="color:var(--accent)">Hours Every Week</span>
+            Custom AI Systems That Save Your Business <em>Hours Every Week</em>
           </h1>
           <p class="hero-sub">
             We design, build, and implement AI automations, chatbots, and custom business tools that eliminate repetitive work and help your business scale.
@@ -1430,88 +1114,100 @@
             <a href="#services" class="btn-secondary">See Our Work</a>
           </div>
           <div class="hero-trust">
-            <span class="trust-item"><span style="color:var(--accent)">&#10003;</span> No tech knowledge required</span>
-            <span class="trust-item"><span style="color:var(--accent)">&#10003;</span> Results in 2 weeks</span>
-            <span class="trust-item"><span style="color:var(--accent)">&#10003;</span> Free first call</span>
+            <span class="trust-item"><span class="trust-item-check">&#10003;</span> No tech knowledge required</span>
+            <span class="trust-item"><span class="trust-item-check">&#10003;</span> Results in 2 weeks</span>
+            <span class="trust-item"><span class="trust-item-check">&#10003;</span> Free first call</span>
           </div>
         </div>
 
-        <!-- Right: Visual Dashboard -->
+        <!-- Right: Abstract SVG Workflow Diagram -->
         <div class="hero-visual">
-          <div class="hero-glow"></div>
-          <div class="dashboard-card">
+          <div class="hero-visual-wrap">
+            <svg class="workflow-svg" viewBox="0 0 400 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="wf-grid" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+                  <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+                </pattern>
+                <style>
+                  .flow-line { stroke-dasharray: 6 4; animation: flow 2s linear infinite; }
+                  .flow-line-slow { stroke-dasharray: 6 4; animation: flow 3s linear infinite; }
+                </style>
+              </defs>
+              <rect width="400" height="280" fill="url(#wf-grid)"/>
 
-            <!-- Header -->
-            <div class="dash-header">
-              <div class="dash-dots">
-                <span class="dash-dot" style="background:#FF5F56"></span>
-                <span class="dash-dot" style="background:#FEBC2E"></span>
-                <span class="dash-dot" style="background:#28C840"></span>
-              </div>
-              <span class="dash-title">AI Workflow Dashboard</span>
-              <div class="dash-live">
-                <span class="live-dot"></span>
-                Live
-              </div>
-            </div>
+              <!-- NODE: Client Data (top-left) -->
+              <rect x="16" y="28" width="98" height="44" rx="8" fill="rgba(15,18,34,0.9)" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+              <rect x="24" y="38" width="20" height="4" rx="2" fill="rgba(255,255,255,0.12)"/>
+              <rect x="24" y="46" width="34" height="4" rx="2" fill="rgba(255,255,255,0.08)"/>
+              <rect x="24" y="54" width="26" height="4" rx="2" fill="rgba(255,255,255,0.06)"/>
+              <text x="58" y="66" fill="rgba(237,238,245,0.5)" font-family="Inter,sans-serif" font-size="9" font-weight="500" text-anchor="middle">Client Data</text>
 
-            <!-- Metrics -->
-            <div class="dash-metrics">
-              <div class="metric-chip">
-                <span class="metric-num">47</span>
-                <span class="metric-label">Active Workflows</span>
-              </div>
-              <div class="metric-chip">
-                <span class="metric-num">12.4 hrs</span>
-                <span class="metric-label">Saved This Week</span>
-              </div>
-              <div class="metric-chip">
-                <span class="metric-num">98%</span>
-                <span class="metric-label">Success Rate</span>
-              </div>
-            </div>
+              <!-- NODE: Scheduling (mid-left) -->
+              <rect x="16" y="108" width="98" height="44" rx="8" fill="rgba(15,18,34,0.9)" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+              <rect x="24" y="118" width="20" height="4" rx="2" fill="rgba(255,255,255,0.12)"/>
+              <rect x="24" y="126" width="34" height="4" rx="2" fill="rgba(255,255,255,0.08)"/>
+              <rect x="24" y="134" width="26" height="4" rx="2" fill="rgba(255,255,255,0.06)"/>
+              <text x="58" y="146" fill="rgba(237,238,245,0.5)" font-family="Inter,sans-serif" font-size="9" font-weight="500" text-anchor="middle">Scheduling</text>
 
-            <!-- Workflow -->
-            <div class="dash-workflow">
-              <span class="workflow-label">Workflow</span>
-              <div class="workflow-nodes">
-                <div class="wf-node">&#128442; Input</div>
-                <div class="wf-arrow"></div>
-                <div class="wf-node wf-node-ai">
-                  <span class="pulse-dot"></span>&#9889; AI
-                </div>
-                <div class="wf-arrow"></div>
-                <div class="wf-node">&#128228; Output</div>
-                <div class="wf-arrow"></div>
-                <div class="wf-node wf-node-done">&#10003; Done</div>
-              </div>
-            </div>
+              <!-- NODE: Inbound Forms (bottom-left) -->
+              <rect x="16" y="188" width="98" height="44" rx="8" fill="rgba(15,18,34,0.9)" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+              <rect x="24" y="198" width="20" height="4" rx="2" fill="rgba(255,255,255,0.12)"/>
+              <rect x="24" y="206" width="34" height="4" rx="2" fill="rgba(255,255,255,0.08)"/>
+              <rect x="24" y="214" width="26" height="4" rx="2" fill="rgba(255,255,255,0.06)"/>
+              <text x="58" y="226" fill="rgba(237,238,245,0.5)" font-family="Inter,sans-serif" font-size="9" font-weight="500" text-anchor="middle">Inbound Forms</text>
 
-            <!-- Activity -->
-            <div class="dash-activity">
-              <span class="activity-label">Recent Activity</span>
-              <div class="activity-row">
-                <span class="status-dot" style="background:#22c55e"></span>
-                <span class="activity-text">Invoice sent automatically</span>
-                <span class="activity-time">2m ago</span>
-              </div>
-              <div class="activity-row">
-                <span class="status-dot" style="background:#22c55e"></span>
-                <span class="activity-text">Lead follow-up email sent</span>
-                <span class="activity-time">8m ago</span>
-              </div>
-              <div class="activity-row">
-                <span class="status-dot" style="background:var(--accent);animation:pulse 1.5s infinite"></span>
-                <span class="activity-text">Processing customer inquiry...</span>
-                <span class="activity-time">now</span>
-              </div>
-              <div class="activity-row">
-                <span class="status-dot" style="background:#22c55e"></span>
-                <span class="activity-text">Report generated &amp; delivered</span>
-                <span class="activity-time">15m ago</span>
-              </div>
-            </div>
+              <!-- CENTRAL AI ENGINE NODE -->
+              <rect x="151" y="88" width="98" height="104" rx="10" fill="rgba(19,23,40,0.95)" stroke="rgba(255,59,79,0.30)" stroke-width="1.5"/>
+              <rect x="151" y="88" width="98" height="3" rx="1.5" fill="rgba(255,59,79,0.22)"/>
+              <circle cx="200" cy="118" r="6" fill="rgba(255,59,79,0.15)" stroke="rgba(255,59,79,0.40)" stroke-width="1.5"/>
+              <circle cx="200" cy="118" r="3" fill="#FF3B4F" opacity="0.9">
+                <animate attributeName="opacity" values="0.9;0.3;0.9" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="r" values="3;4;3" dur="2s" repeatCount="indefinite"/>
+              </circle>
+              <text x="200" y="140" fill="rgba(237,238,245,0.9)" font-family="Space Grotesk,sans-serif" font-size="11" font-weight="700" text-anchor="middle">AI Engine</text>
+              <text x="200" y="154" fill="rgba(237,238,245,0.38)" font-family="Inter,sans-serif" font-size="8.5" text-anchor="middle">Processing</text>
+              <rect x="166" y="162" width="68" height="20" rx="10" fill="rgba(255,59,79,0.10)" stroke="rgba(255,59,79,0.25)" stroke-width="1"/>
+              <circle cx="178" cy="172" r="3" fill="#FF3B4F" opacity="0.8">
+                <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.8s" repeatCount="indefinite"/>
+              </circle>
+              <text x="201" y="176" fill="rgba(255,59,79,0.85)" font-family="Inter,sans-serif" font-size="8" font-weight="600" text-anchor="middle">Active</text>
 
+              <!-- NODE: CRM Updated (top-right) -->
+              <rect x="286" y="28" width="98" height="44" rx="8" fill="rgba(15,18,34,0.9)" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+              <circle cx="300" cy="50" r="4" fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.35)" stroke-width="1"/>
+              <circle cx="300" cy="50" r="2" fill="rgba(34,197,94,0.8)"/>
+              <text x="334" y="46" fill="rgba(237,238,245,0.55)" font-family="Inter,sans-serif" font-size="9" font-weight="500">CRM Updated</text>
+              <text x="294" y="62" fill="rgba(237,238,245,0.3)" font-family="Inter,sans-serif" font-size="8">Auto-synced &#183; 2m ago</text>
+
+              <!-- NODE: Email Sent (mid-right) -->
+              <rect x="286" y="108" width="98" height="44" rx="8" fill="rgba(15,18,34,0.9)" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+              <circle cx="300" cy="130" r="4" fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.35)" stroke-width="1"/>
+              <circle cx="300" cy="130" r="2" fill="rgba(34,197,94,0.8)"/>
+              <text x="334" y="126" fill="rgba(237,238,245,0.55)" font-family="Inter,sans-serif" font-size="9" font-weight="500">Email Sent</text>
+              <text x="294" y="142" fill="rgba(237,238,245,0.3)" font-family="Inter,sans-serif" font-size="8">Follow-up &#183; 8m ago</text>
+
+              <!-- NODE: Appt Booked (bottom-right) -->
+              <rect x="286" y="188" width="98" height="44" rx="8" fill="rgba(15,18,34,0.9)" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+              <circle cx="300" cy="210" r="4" fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.35)" stroke-width="1"/>
+              <circle cx="300" cy="210" r="2" fill="rgba(34,197,94,0.8)"/>
+              <text x="334" y="206" fill="rgba(237,238,245,0.55)" font-family="Inter,sans-serif" font-size="9" font-weight="500">Appt Booked</text>
+              <text x="294" y="222" fill="rgba(237,238,245,0.3)" font-family="Inter,sans-serif" font-size="8">Calendar &#183; auto</text>
+
+              <!-- CONNECTIONS: Left nodes to AI Engine -->
+              <path d="M 114 50 C 132 50, 138 140, 151 140" stroke="rgba(255,255,255,0.12)" stroke-width="1" class="flow-line-slow"/>
+              <path d="M 114 130 L 151 140" stroke="rgba(255,255,255,0.12)" stroke-width="1" class="flow-line"/>
+              <path d="M 114 210 C 132 210, 138 155, 151 150" stroke="rgba(255,255,255,0.12)" stroke-width="1" class="flow-line-slow"/>
+
+              <!-- CONNECTIONS: AI Engine to right nodes -->
+              <path d="M 249 130 C 264 100, 270 60, 286 50" stroke="rgba(255,59,79,0.25)" stroke-width="1.2" class="flow-line"/>
+              <path d="M 249 140 L 286 130" stroke="rgba(255,59,79,0.25)" stroke-width="1.2" class="flow-line"/>
+              <path d="M 249 150 C 264 165, 270 195, 286 210" stroke="rgba(255,59,79,0.25)" stroke-width="1.2" class="flow-line-slow"/>
+
+              <!-- Arrow caps -->
+              <polygon points="283,47 288,50 283,53" fill="rgba(255,59,79,0.35)"/>
+              <polygon points="283,127 288,130 283,133" fill="rgba(255,59,79,0.35)"/>
+              <polygon points="283,207 288,210 283,213" fill="rgba(255,59,79,0.35)"/>
+            </svg>
           </div>
         </div>
 
@@ -1550,57 +1246,47 @@
   ═══════════════════════════════════════ -->
   <section class="section problem-section">
     <div class="container">
+      <div class="problem-layout">
 
-      <div class="problem-header">
-        <span class="eyebrow">The Problem</span>
-        <h2 class="section-heading">Most Businesses Are Wasting Time on Work AI Can Handle</h2>
-        <p class="section-desc">Repetitive tasks are eating your hours, delaying growth, and draining your team &mdash; and it&#8217;s entirely solvable.</p>
-      </div>
-
-      <div class="problem-grid">
-
-        <!-- Card 1: Manual Processes -->
-        <div class="problem-card card">
-          <div class="problem-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
-              <path d="M12 6v6l4 2"/>
-            </svg>
-          </div>
-          <h3>Manual Processes</h3>
-          <p>Data entry, copy-pasting, and repetitive administrative tasks that drain hours and require no real human judgment.</p>
+        <!-- Left: Editorial copy -->
+        <div class="problem-left">
+          <span class="eyebrow">The Problem</span>
+          <h2 class="section-heading">Most Businesses Are Wasting Time on Work AI Can Handle</h2>
+          <p class="section-desc">Repetitive tasks are eating your hours, delaying growth, and draining your team &mdash; and it&#8217;s entirely solvable.</p>
+          <p class="problem-left-note" style="margin-top:32px">Sound familiar?</p>
+          <a href="https://go.oncehub.com/TrevorAragon?name=ADD_DYNAMIC_FIELD&email=ADD_DYNAMIC_FIELD&skip=1" target="_blank" class="problem-link">Let&#8217;s talk &#8594;</a>
         </div>
 
-        <!-- Card 2: Administrative Bottlenecks -->
-        <div class="problem-card card">
-          <div class="problem-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16v2l-6 6v8l-4-2v-6L4 6V4z"/>
-            </svg>
-          </div>
-          <h3>Administrative Bottlenecks</h3>
-          <p>Scheduling, follow-ups, and internal communications that pile up and prevent your team from doing meaningful work.</p>
-        </div>
+        <!-- Right: Numbered rows -->
+        <div class="problem-rows">
 
-        <!-- Card 3: Missed Opportunities -->
-        <div class="problem-card card">
-          <div class="problem-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="m4.93 4.93 14.14 14.14"/>
-              <path d="M12 8v4l3 3"/>
-            </svg>
+          <div class="problem-row">
+            <span class="problem-row-num">01</span>
+            <div class="problem-row-content">
+              <h3>Manual Processes</h3>
+              <p>Data entry, copy-pasting, and repetitive administrative tasks that drain hours and require no real human judgment.</p>
+            </div>
           </div>
-          <h3>Missed Opportunities</h3>
-          <p>Leads that fall through cracks, questions that go unanswered, and potential revenue left sitting on the table.</p>
+
+          <div class="problem-row">
+            <span class="problem-row-num">02</span>
+            <div class="problem-row-content">
+              <h3>Administrative Bottlenecks</h3>
+              <p>Scheduling, follow-ups, and internal communications that pile up and prevent your team from doing meaningful work.</p>
+            </div>
+          </div>
+
+          <div class="problem-row">
+            <span class="problem-row-num">03</span>
+            <div class="problem-row-content">
+              <h3>Missed Opportunities</h3>
+              <p>Leads that fall through cracks, questions that go unanswered, and potential revenue left sitting on the table.</p>
+            </div>
+          </div>
+
         </div>
 
       </div>
-
-      <div class="problem-cta">
-        <p>Sound familiar?</p><a href="https://go.oncehub.com/TrevorAragon?name=ADD_DYNAMIC_FIELD&email=ADD_DYNAMIC_FIELD&skip=1" target="_blank" style="color:var(--accent);font-weight:600;text-decoration:none;margin-left:8px">Let&#8217;s talk &#8594;</a>
-      </div>
-
     </div>
   </section>
 
@@ -1619,9 +1305,9 @@
       <div class="services-grid">
 
         <!-- Service 1: AI Automation -->
-        <div class="service-card card">
+        <div class="service-card">
           <div class="service-icon">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
               <path d="M3 3v5h5"/>
               <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
@@ -1634,9 +1320,9 @@
         </div>
 
         <!-- Service 2: Custom Business Software -->
-        <div class="service-card card">
+        <div class="service-card">
           <div class="service-icon">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
               <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
             </svg>
           </div>
@@ -1646,9 +1332,9 @@
         </div>
 
         <!-- Service 3: AI Assistants & Chatbots -->
-        <div class="service-card card">
+        <div class="service-card">
           <div class="service-icon">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
             </svg>
           </div>
@@ -1673,31 +1359,39 @@
         <p class="section-desc">No tech knowledge required. No guesswork. We handle everything.</p>
       </div>
 
-      <div class="process-grid">
+      <div class="process-track">
 
         <div class="process-step">
-          <div class="step-num"><span>01</span></div>
+          <div class="process-marker">
+            <span class="process-marker-num">01</span>
+          </div>
           <h3>Discovery</h3>
           <p>We learn your business, your workflows, and exactly where AI can help most.</p>
           <span class="step-badge">Free &middot; 30 mins</span>
         </div>
 
         <div class="process-step">
-          <div class="step-num"><span>02</span></div>
+          <div class="process-marker">
+            <span class="process-marker-num">02</span>
+          </div>
           <h3>Strategy</h3>
           <p>We design a custom implementation plan tailored to your specific goals.</p>
           <span class="step-badge">Tailored plan</span>
         </div>
 
         <div class="process-step">
-          <div class="step-num"><span>03</span></div>
+          <div class="process-marker">
+            <span class="process-marker-num">03</span>
+          </div>
           <h3>Build</h3>
           <p>Our team builds your AI systems. You review and give feedback &mdash; nothing more.</p>
           <span class="step-badge">~2 weeks</span>
         </div>
 
         <div class="process-step">
-          <div class="step-num"><span>04</span></div>
+          <div class="process-marker">
+            <span class="process-marker-num">04</span>
+          </div>
           <h3>Deploy</h3>
           <p>We launch, train your team, and provide ongoing support as your business grows.</p>
           <span class="step-badge">Ongoing support</span>
@@ -1730,7 +1424,7 @@
             <p>Sales teams needed to learn from real pitch recordings, but those conversations contained sensitive client names, pricing, and account data that couldn&#8217;t be shared broadly.</p>
           </div>
 
-          <div class="cs-block cs-block-last">
+          <div class="cs-block">
             <span class="cs-label">The Solution</span>
             <p>We built an AI workflow that automatically analyzes pitch recordings, removes all sensitive information, and generates clean training materials that reps can safely review and practice from.</p>
           </div>
@@ -1741,16 +1435,16 @@
             <span class="result-pill">&#10003; Zero manual cleanup</span>
           </div>
 
-          <a href="https://go.oncehub.com/TrevorAragon?name=ADD_DYNAMIC_FIELD&email=ADD_DYNAMIC_FIELD&skip=1" target="_blank" style="color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid var(--accent-border);padding-bottom:2px">Build Something Like This &#8594;</a>
+          <a href="https://go.oncehub.com/TrevorAragon?name=ADD_DYNAMIC_FIELD&email=ADD_DYNAMIC_FIELD&skip=1" target="_blank" class="cs-cta-link">Build Something Like This &#8594;</a>
         </div>
 
         <!-- Right: Visual -->
         <div class="cs-visual">
           <div class="cs-win-top">
-            <div class="dash-dots">
-              <span class="dash-dot" style="background:#FF5F56"></span>
-              <span class="dash-dot" style="background:#FEBC2E"></span>
-              <span class="dash-dot" style="background:#28C840"></span>
+            <div class="cs-win-dots">
+              <span class="cs-win-dot" style="background:#FF5F56"></span>
+              <span class="cs-win-dot" style="background:#FEBC2E"></span>
+              <span class="cs-win-dot" style="background:#28C840"></span>
             </div>
             <span class="cs-win-title">AI Workflow</span>
             <span class="cs-badge">&#10003; Sensitive info removed</span>
@@ -1758,7 +1452,6 @@
 
           <div class="cs-split">
 
-            <!-- Panel 1: Raw Pitch -->
             <div class="cs-panel">
               <h4>Raw Pitch</h4>
               <div class="pitch-line" style="width:100%"></div>
@@ -1771,7 +1464,6 @@
               <div class="pitch-line" style="width:75%"></div>
             </div>
 
-            <!-- Panel 2: Training Version -->
             <div class="cs-panel">
               <h4>Training Version</h4>
               <div class="pitch-line" style="width:100%"></div>
@@ -1807,10 +1499,9 @@
 
       <div class="trust-grid">
 
-        <!-- Custom Built -->
-        <div class="trust-card card">
+        <div class="trust-card">
           <div class="trust-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
               <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
             </svg>
           </div>
@@ -1818,10 +1509,9 @@
           <p>Every solution is designed from scratch for your specific business. No templates, no one-size-fits-all software &mdash; just a system built exactly around how you work.</p>
         </div>
 
-        <!-- Business Focused -->
-        <div class="trust-card card">
+        <div class="trust-card">
           <div class="trust-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
               <rect x="2" y="7" width="20" height="14" rx="2"/>
               <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
             </svg>
@@ -1830,10 +1520,9 @@
           <p>We speak business, not tech. Our solutions are designed around measurable outcomes &mdash; time saved, revenue recovered, and team capacity freed up.</p>
         </div>
 
-        <!-- Fast Implementation -->
-        <div class="trust-card card">
+        <div class="trust-card">
           <div class="trust-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
               <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
               <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
               <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
@@ -1844,10 +1533,9 @@
           <p>Most AI solutions go live in under 2 weeks. We move fast without cutting corners, so you start seeing results quickly &mdash; not months from now.</p>
         </div>
 
-        <!-- Ongoing Support -->
-        <div class="trust-card card">
+        <div class="trust-card">
           <div class="trust-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
               <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
               <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
@@ -1872,11 +1560,12 @@
         <h2 class="section-heading">What Our Clients Say</h2>
       </div>
 
-      <div class="testimonials-grid">
+      <div class="testimonials-layout">
 
-        <div class="testimonial-card card">
-          <div class="quote-icon">&#10077;</div>
-          <p class="testimonial-text">&#8220;Working with Aragon AI Lab saved us about 15 hours a week on admin work alone. The automated follow-up system paid for itself within the first month.&#8221;</p>
+        <!-- Featured: Sarah M. -->
+        <div class="testimonial-card featured">
+          <div class="quote-mark">&#8220;</div>
+          <p class="testimonial-text">Working with Aragon AI Lab saved us about 15 hours a week on admin work alone. The automated follow-up system paid for itself within the first month.</p>
           <div class="testimonial-author">
             <div class="author-avatar">SM</div>
             <div>
@@ -1886,28 +1575,33 @@
           </div>
         </div>
 
-        <div class="testimonial-card card">
-          <div class="quote-icon">&#10077;</div>
-          <p class="testimonial-text">&#8220;I was skeptical about AI until Trevor&#8217;s team built a custom client intake system that completely eliminated our manual paperwork. The ROI has been incredible.&#8221;</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">JT</div>
-            <div>
-              <span class="author-name">James T.</span>
-              <span class="author-role">CEO, Summit Consulting</span>
-            </div>
-          </div>
-        </div>
+        <!-- Right column: 2 smaller -->
+        <div class="testimonials-right">
 
-        <div class="testimonial-card card">
-          <div class="quote-icon">&#10077;</div>
-          <p class="testimonial-text">&#8220;The chatbot they built handles over 80% of our customer inquiries automatically. Our team can now focus on the work that actually moves the business forward.&#8221;</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">ML</div>
-            <div>
-              <span class="author-name">Maria L.</span>
-              <span class="author-role">Operations Manager, Pacific Supply Co.</span>
+          <div class="testimonial-card">
+            <div class="quote-mark">&#8220;</div>
+            <p class="testimonial-text small">I was skeptical about AI until Trevor&#8217;s team built a custom client intake system that completely eliminated our manual paperwork. The ROI has been incredible.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">JT</div>
+              <div>
+                <span class="author-name">James T.</span>
+                <span class="author-role">CEO, Summit Consulting</span>
+              </div>
             </div>
           </div>
+
+          <div class="testimonial-card">
+            <div class="quote-mark">&#8220;</div>
+            <p class="testimonial-text small">The chatbot they built handles over 80% of our customer inquiries automatically. Our team can now focus on the work that actually moves the business forward.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">ML</div>
+              <div>
+                <span class="author-name">Maria L.</span>
+                <span class="author-role">Operations Manager, Pacific Supply Co.</span>
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </div>
@@ -1950,7 +1644,7 @@
           <!-- Result -->
           <div class="quiz-result" data-quiz-result>
             <span class="eyebrow">Your AI Readiness Score</span>
-            <h3>You could save <span class="quiz-score" data-quiz-score style="color:var(--accent)">10+ hours</span> every week.</h3>
+            <h3>You could save <span class="quiz-score" data-quiz-score>10+ hours</span> every week.</h3>
             <p data-quiz-copy>Your answers show clear places where automation could reduce manual work and make daily operations more consistent.</p>
             <a href="https://go.oncehub.com/TrevorAragon?name=ADD_DYNAMIC_FIELD&email=ADD_DYNAMIC_FIELD&skip=1" target="_blank" class="btn-primary">Get Your Free AI Plan &#8594;</a>
           </div>
@@ -1964,7 +1658,7 @@
   <!-- ═══════════════════════════════════════
        FINAL CTA
   ═══════════════════════════════════════ -->
-  <section class="section final-cta-section">
+  <section class="final-cta-section">
     <div class="container">
       <div class="cta-inner">
         <span class="eyebrow">Get Started Today</span>
@@ -1997,25 +1691,22 @@
         </nav>
 
         <div class="footer-social">
-          <!-- Instagram -->
           <a href="https://www.instagram.com/aragonailab/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
               <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
             </svg>
           </a>
-          <!-- LinkedIn -->
           <a href="https://www.linkedin.com/company/aragon-ailab" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
               <rect x="2" y="9" width="4" height="12"/>
               <circle cx="4" cy="4" r="2"/>
             </svg>
           </a>
-          <!-- Facebook -->
           <a href="https://www.facebook.com/aragonailab" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
             </svg>
           </a>
@@ -2038,157 +1729,10 @@
        JAVASCRIPT
   ═══════════════════════════════════════ -->
   <script>
-    // ─── QUIZ LOGIC ───
-    var quizQuestions = [
-      {
-        question: 'How many hours per week does your team spend on repetitive tasks like data entry, follow-up emails, or scheduling?',
-        options: [
-          { text: 'Less than 2 hours', value: 1 },
-          { text: '2–5 hours', value: 2 },
-          { text: '5–10 hours', value: 3 },
-          { text: 'More than 10 hours', value: 4 }
-        ]
-      },
-      {
-        question: 'How often do leads or customer messages wait because your team is busy?',
-        options: [
-          { text: 'Almost never', value: 1 },
-          { text: 'A few times a month', value: 2 },
-          { text: 'Every week', value: 3 },
-          { text: 'Almost every day', value: 4 }
-        ]
-      },
-      {
-        question: 'How many different tools does your team use to run daily operations?',
-        options: [
-          { text: '1–2 tools', value: 1 },
-          { text: '3–5 tools', value: 2 },
-          { text: '6–9 tools', value: 3 },
-          { text: '10+ tools', value: 4 }
-        ]
-      },
-      {
-        question: 'How much time does your team spend copying information between systems?',
-        options: [
-          { text: 'Almost none', value: 1 },
-          { text: 'A little each week', value: 2 },
-          { text: 'Several hours each week', value: 3 },
-          { text: 'It is a major bottleneck', value: 4 }
-        ]
-      },
-      {
-        question: 'How consistent is your current follow-up process with leads and customers?',
-        options: [
-          { text: 'Very consistent', value: 1 },
-          { text: 'Mostly consistent', value: 2 },
-          { text: 'Hit or miss', value: 3 },
-          { text: 'We need a better system', value: 4 }
-        ]
-      },
-      {
-        question: "What best describes your team's current AI setup?",
-        options: [
-          { text: 'We do not use AI yet', value: 4 },
-          { text: 'We use a few tools manually', value: 3 },
-          { text: 'We have some automations', value: 2 },
-          { text: 'AI is already part of our workflow', value: 1 }
-        ]
-      }
-    ];
-
-    var quiz = document.querySelector('[data-quiz]');
-    if (quiz) {
-      var live = quiz.querySelector('.quiz-live');
-      var result = quiz.querySelector('[data-quiz-result]');
-      var countEl = quiz.querySelector('[data-quiz-count]');
-      var percentEl = quiz.querySelector('[data-quiz-percent]');
-      var progressEl = quiz.querySelector('[data-quiz-progress]');
-      var labelEl = quiz.querySelector('[data-quiz-label]');
-      var questionEl = quiz.querySelector('[data-quiz-question]');
-      var optionsEl = quiz.querySelector('[data-quiz-options]');
-      var backBtn = quiz.querySelector('[data-quiz-back]');
-      var nextBtn = quiz.querySelector('[data-quiz-next]');
-      var scoreEl = quiz.querySelector('[data-quiz-score]');
-      var copyEl = quiz.querySelector('[data-quiz-copy]');
-      var answers = new Array(quizQuestions.length).fill(null);
-      var current = 0;
-
-      function renderQuiz() {
-        var q = quizQuestions[current];
-        var pct = Math.round(((current + 1) / quizQuestions.length) * 100);
-        countEl.textContent = 'Question ' + (current + 1) + ' of ' + quizQuestions.length;
-        percentEl.textContent = pct + '%';
-        progressEl.style.width = pct + '%';
-        labelEl.textContent = 'Question ' + (current + 1);
-        questionEl.textContent = q.question;
-        optionsEl.innerHTML = '';
-        q.options.forEach(function(opt, i) {
-          var btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'quiz-option' + (answers[current] === i ? ' active' : '');
-          btn.innerHTML = '<span class="quiz-option-dot"></span><span>' + opt.text + '</span>';
-          btn.addEventListener('click', function() {
-            answers[current] = i;
-            renderQuiz();
-          });
-          optionsEl.appendChild(btn);
-        });
-        backBtn.disabled = current === 0;
-        nextBtn.disabled = answers[current] === null;
-        nextBtn.textContent = current === quizQuestions.length - 1 ? 'See Results →' : 'Next →';
-      }
-
-      function showResult() {
-        var total = answers.reduce(function(sum, ai, qi) {
-          return sum + quizQuestions[qi].options[ai].value;
-        }, 0);
-        var hours = '5–10 hours';
-        var copy = 'Your answers show clear places where automation could reduce manual work and make daily operations more consistent.';
-        if (total >= 19) {
-          hours = '15+ hours';
-          copy = 'Your answers point to several high-impact workflows that could be automated quickly — especially admin tasks, follow-ups, and customer communication.';
-        } else if (total >= 13) {
-          hours = '10+ hours';
-          copy = 'Your answers show repeatable workflows where AI could save meaningful time each week without changing how your team already works.';
-        }
-        scoreEl.textContent = hours;
-        copyEl.textContent = copy;
-        live.style.display = 'none';
-        result.classList.add('is-visible');
-      }
-
-      backBtn.addEventListener('click', function() {
-        if (current > 0) {
-          current--;
-          renderQuiz();
-        }
-      });
-
-      nextBtn.addEventListener('click', function() {
-        if (answers[current] === null) return;
-        if (current === quizQuestions.length - 1) {
-          showResult();
-          return;
-        }
-        current++;
-        renderQuiz();
-      });
-
-      renderQuiz();
-    }
-
-    // ─── SMOOTH SCROLL ───
-    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-      a.addEventListener('click', function(e) {
-        var href = this.getAttribute('href');
-        if (href === '#') return;
-        var target = document.querySelector(href);
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
+var quizQuestions=[{question:'How many hours per week does your team spend on repetitive tasks like data entry, follow-up emails, or scheduling?',options:[{text:'Less than 2 hours',value:1},{text:'2–5 hours',value:2},{text:'5–10 hours',value:3},{text:'More than 10 hours',value:4}]},{question:'How often do leads or customer messages wait because your team is busy?',options:[{text:'Almost never',value:1},{text:'A few times a month',value:2},{text:'Every week',value:3},{text:'Almost every day',value:4}]},{question:'How many different tools does your team use to run daily operations?',options:[{text:'1–2 tools',value:1},{text:'3–5 tools',value:2},{text:'6–9 tools',value:3},{text:'10+ tools',value:4}]},{question:'How much time does your team spend copying information between systems?',options:[{text:'Almost none',value:1},{text:'A little each week',value:2},{text:'Several hours each week',value:3},{text:'It is a major bottleneck',value:4}]},{question:'How consistent is your current follow-up process with leads and customers?',options:[{text:'Very consistent',value:1},{text:'Mostly consistent',value:2},{text:'Hit or miss',value:3},{text:'We need a better system',value:4}]},{question:"What best describes your team's current AI setup?",options:[{text:'We do not use AI yet',value:4},{text:'We use a few tools manually',value:3},{text:'We have some automations',value:2},{text:'AI is already part of our workflow',value:1}]}];
+var quiz=document.querySelector('[data-quiz]');
+if(quiz){var live=quiz.querySelector('.quiz-live');var result=quiz.querySelector('[data-quiz-result]');var countEl=quiz.querySelector('[data-quiz-count]');var percentEl=quiz.querySelector('[data-quiz-percent]');var progressEl=quiz.querySelector('[data-quiz-progress]');var labelEl=quiz.querySelector('[data-quiz-label]');var questionEl=quiz.querySelector('[data-quiz-question]');var optionsEl=quiz.querySelector('[data-quiz-options]');var backBtn=quiz.querySelector('[data-quiz-back]');var nextBtn=quiz.querySelector('[data-quiz-next]');var scoreEl=quiz.querySelector('[data-quiz-score]');var copyEl=quiz.querySelector('[data-quiz-copy]');var answers=new Array(quizQuestions.length).fill(null);var cur=0;function renderQuiz(){var q=quizQuestions[cur];var pct=Math.round(((cur+1)/quizQuestions.length)*100);countEl.textContent='Question '+(cur+1)+' of '+quizQuestions.length;percentEl.textContent=pct+'%';progressEl.style.width=pct+'%';labelEl.textContent='Question '+(cur+1);questionEl.textContent=q.question;optionsEl.innerHTML='';q.options.forEach(function(opt,i){var btn=document.createElement('button');btn.type='button';btn.className='quiz-option'+(answers[cur]===i?' active':'');btn.innerHTML='<span class="quiz-option-dot"></span><span>'+opt.text+'</span>';btn.addEventListener('click',function(){answers[cur]=i;renderQuiz();});optionsEl.appendChild(btn);});backBtn.disabled=cur===0;nextBtn.disabled=answers[cur]===null;nextBtn.textContent=cur===quizQuestions.length-1?'See Results →':'Next →';}function showResult(){var total=answers.reduce(function(s,ai,qi){return s+quizQuestions[qi].options[ai].value;},0);var hours='5–10 hours';var copy='Your answers show clear places where automation could reduce manual work and make daily operations more consistent.';if(total>=19){hours='15+ hours';copy='Your answers point to several high-impact workflows that could be automated quickly — especially admin tasks, follow-ups, and customer communication.';}else if(total>=13){hours='10+ hours';copy='Your answers show repeatable workflows where AI could save meaningful time each week without changing how your team already works.';}scoreEl.textContent=hours;copyEl.textContent=copy;live.style.display='none';result.classList.add('is-visible');}backBtn.addEventListener('click',function(){if(cur>0){cur--;renderQuiz();}});nextBtn.addEventListener('click',function(){if(answers[cur]===null)return;if(cur===quizQuestions.length-1){showResult();return;}cur++;renderQuiz();});renderQuiz();}
+document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}});});
   </script>
 
 </body>
