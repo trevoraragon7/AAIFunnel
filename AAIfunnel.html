@@ -87,9 +87,10 @@
 
     /* ── HERO ── */
     .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px clamp(20px,4vw,48px) 80px;overflow:hidden}
-    #hcv{position:absolute;inset:0;width:100%;height:100%;z-index:0}
-    .hero-glow{position:absolute;top:-250px;left:50%;transform:translateX(-50%);width:900px;height:700px;background:radial-gradient(ellipse,rgba(255,59,79,.13) 0%,transparent 65%);pointer-events:none;z-index:1}
-    .hero-c{position:relative;z-index:2;max-width:920px;opacity:0}
+    .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none}
+    .hero-overlay{position:absolute;inset:0;background:rgba(5,5,5,.62);z-index:1;pointer-events:none}
+    .hero-glow{position:absolute;top:-250px;left:50%;transform:translateX(-50%);width:900px;height:700px;background:radial-gradient(ellipse,rgba(255,59,79,.18) 0%,transparent 65%);pointer-events:none;z-index:2}
+    .hero-c{position:relative;z-index:3;max-width:920px;opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
     .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,59,79,.08);border:1px solid var(--red-b);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--red);letter-spacing:.04em;margin-bottom:32px}
     .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--red)}
     .hero-h1{margin-bottom:28px}
@@ -98,7 +99,7 @@
     .hero-trust{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap}
     .ti{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--dim)}
     .ti-ck{width:18px;height:18px;border-radius:50%;background:rgba(255,59,79,.13);border:1px solid var(--red-b);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .hero-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;opacity:0}
+    .hero-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:3;opacity:0}
     .scroll-l{width:1px;height:44px;background:linear-gradient(to bottom,var(--red),transparent);transform-origin:top;transform:scaleY(0)}
 
     /* ── METRICS ── */
@@ -298,8 +299,9 @@
       .met-i:first-child{border-top:none;padding-top:0;margin-top:0}
     }
 
-    /* hide until motion JS runs so no FOUC */
-    .m-hidden{opacity:0}
+    /* fade-in animation */
+    .m-hidden{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+    .m-hidden.m-vis{opacity:1;transform:translateY(0)}
   </style>
 </head>
 <body>
@@ -328,7 +330,10 @@
 
 <!-- ══ HERO ══ -->
 <section class="hero" id="top">
-  <canvas id="hcv" aria-hidden="true"></canvas>
+  <video class="hero-video" autoplay muted loop playsinline aria-hidden="true">
+    <source src="kling_20260531_作品_A_billiona_1969_0 (1).mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-c" id="hero-c">
     <div class="hero-badge"><span class="badge-dot" aria-hidden="true"></span>Enterprise AI Systems</div>
@@ -541,30 +546,6 @@
   </div>
 </footer>
 
-<!-- ══ CANVAS ══ -->
-<script>
-(function(){
-  var cv=document.getElementById('hcv'),ctx=cv.getContext('2d');
-  var mx=-2000,my=-2000,RAF,S=44,R=1.1,IR=200;
-  function resize(){cv.width=cv.offsetWidth;cv.height=cv.offsetHeight}
-  resize();window.addEventListener('resize',resize,{passive:true});
-  cv.parentElement.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
-  function draw(){
-    ctx.clearRect(0,0,cv.width,cv.height);
-    for(var x=S/2;x<cv.width;x+=S){for(var y=S/2;y<cv.height;y+=S){
-      var dx=mx-x,dy=my-y,d=Math.sqrt(dx*dx+dy*dy),inf=Math.max(0,1-d/IR);
-      var op=0.10+inf*0.55,rad=R+inf*2.2;
-      ctx.beginPath();ctx.arc(x,y,rad,0,6.283);
-      if(inf>0.05){var g=ctx.createRadialGradient(x,y,0,x,y,rad*2);g.addColorStop(0,'rgba(255,59,79,'+op+')');g.addColorStop(1,'rgba(255,122,135,'+(op*.5)+')');ctx.fillStyle=g;}
-      else{ctx.fillStyle='rgba(255,255,255,'+op+')';}
-      ctx.fill();
-    }}RAF=requestAnimationFrame(draw);
-  }
-  draw();
-  document.addEventListener('visibilitychange',function(){if(document.hidden)cancelAnimationFrame(RAF);else draw();});
-})();
-</script>
-
 <!-- ══ NAV SCROLL ══ -->
 <script>
 (function(){
@@ -635,6 +616,23 @@ document.querySelectorAll('.gc').forEach(function(card){
 document.querySelectorAll('a[href^="#"]').forEach(function(a){
   a.addEventListener('click',function(e){var t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}});
 });
+</script>
+
+<!-- ══ REVEAL ANIMATIONS ══ -->
+<script>
+(function(){
+  // Hero fades in immediately on load
+  var hero=document.querySelector('.hero-c');
+  if(hero){requestAnimationFrame(function(){setTimeout(function(){hero.style.opacity='1';hero.style.transform='translateY(0)';},80);});}
+  // Hero scroll indicator
+  var hs=document.getElementById('hero-scroll');
+  if(hs){setTimeout(function(){hs.style.transition='opacity .6s ease';hs.style.opacity='1';},900);}
+  // All .m-hidden elements fade in when scrolled into view
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('m-vis');obs.unobserve(e.target);}});
+  },{threshold:0.12});
+  document.querySelectorAll('.m-hidden').forEach(function(el){obs.observe(el);});
+})();
 </script>
 
 <!-- ══ FRAMER MOTION (motion package — same engine, vanilla JS) ══ -->
