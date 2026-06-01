@@ -84,6 +84,9 @@
     .nav-r{display:flex;align-items:center;gap:14px}
     .nav-email{font-size:13px;color:var(--muted);font-weight:500;transition:color .18s}
     .nav-email:hover{color:var(--text)}
+    .nav-soc{display:flex;align-items:center;gap:2px}
+    .nav-soc-btn{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:color .18s,background .18s}
+    .nav-soc-btn:hover{color:var(--text);background:rgba(255,255,255,.06)}
 
     /* ── HERO ── */
     .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px clamp(20px,4vw,48px) 80px;overflow:hidden}
@@ -116,16 +119,120 @@
     .sh p{font-size:18px;color:var(--muted);line-height:1.65}
 
     /* ── SERVICES BENTO ── */
-    .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
-    .sc{padding:32px;display:flex;flex-direction:column}
+    .bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:220px;gap:14px}
+    .sc{padding:28px 32px;display:flex;flex-direction:column;overflow:hidden}
     .sc.w4{grid-column:span 4}
     .sc.w2{grid-column:span 2}
     .sc.w3{grid-column:span 3}
-    .sc.w6{grid-column:span 6}
+    .sc.w6{grid-column:span 6;grid-row:span 1}
+    .sc.tall{grid-row:span 2}
     .svc-icon{width:48px;height:48px;border-radius:12px;background:var(--red-d);border:1px solid var(--red-b);display:flex;align-items:center;justify-content:center;margin-bottom:20px;flex-shrink:0;color:var(--red)}
-    .sc h3{margin-bottom:10px}
-    .sc p{font-size:15px;color:var(--muted);line-height:1.65;flex:1}
-    .sc-tag{margin-top:18px;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--red)}
+    .sc-copy{margin-top:auto}
+    .sc-copy h3{margin-bottom:6px;font-size:18px}
+    .sc-copy p{font-size:14px;color:var(--muted);line-height:1.6}
+    .sc-tag{margin-top:14px;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--red)}
+    .sc-vis{flex:1;display:flex;align-items:center;justify-content:center;min-height:0}
+
+    /* Animated visuals */
+    /* 1 — Automation pulse */
+    .auto-ring{position:relative;display:flex;align-items:center;justify-content:center}
+    .auto-core{width:52px;height:52px;border-radius:50%;background:var(--red-d);border:1.5px solid var(--red-b);display:flex;align-items:center;justify-content:center;color:var(--red);z-index:1;position:relative}
+    .auto-pulse{position:absolute;width:52px;height:52px;border-radius:50%;border:1.5px solid rgba(255,59,79,.4);animation:autoPulse 2.4s ease-out infinite}
+    .auto-pulse:nth-child(2){animation-delay:.6s}
+    .auto-pulse:nth-child(3){animation-delay:1.2s}
+    .auto-pulse:nth-child(4){animation-delay:1.8s}
+    @keyframes autoPulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(3.2);opacity:0}}
+
+    /* 2 — Chat bubbles */
+    .chat-wrap{display:flex;flex-direction:column;gap:8px;width:100%;max-width:200px}
+    .chat-bubble{border-radius:12px;padding:8px 12px;font-size:12px;line-height:1.4;max-width:80%;opacity:0;transform:translateY(8px);animation:bubbleIn .4s forwards}
+    .chat-bubble.user{background:var(--red);color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
+    .chat-bubble.ai{background:var(--surf);border:1px solid var(--brd2);color:var(--muted);align-self:flex-start;border-bottom-left-radius:3px}
+    .chat-bubble.b1{animation-delay:.2s}
+    .chat-bubble.b2{animation-delay:.9s}
+    .chat-bubble.b3{animation-delay:1.6s}
+    @keyframes bubbleIn{to{opacity:1;transform:translateY(0)}}
+
+    /* 3 — App window */
+    .app-win{width:160px;background:var(--surf);border:1px solid var(--brd2);border-radius:10px;overflow:hidden}
+    .app-bar{height:26px;background:rgba(255,255,255,.04);border-bottom:1px solid var(--brd);display:flex;align-items:center;gap:5px;padding:0 10px}
+    .app-dot{width:7px;height:7px;border-radius:50%}
+    .app-body{padding:10px;display:flex;flex-direction:column;gap:6px}
+    .app-line{height:7px;border-radius:4px;background:rgba(255,255,255,.1)}
+    .app-line.a1{width:90%;animation:linePulse 2s .3s ease-in-out infinite}
+    .app-line.a2{width:65%;animation:linePulse 2s .6s ease-in-out infinite}
+    .app-line.a3{width:80%;animation:linePulse 2s .9s ease-in-out infinite}
+    @keyframes linePulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+    /* 4 — Workflow nodes */
+    .wf-wrap{display:flex;align-items:center;gap:0;width:100%;max-width:220px}
+    .wf-node{flex-shrink:0;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:600;background:var(--surf);border:1px solid var(--brd2);color:var(--muted);white-space:nowrap;transition:border-color .3s,color .3s}
+    .wf-node.active{border-color:var(--red-b);color:var(--red)}
+    .wf-line{flex:1;height:1px;background:linear-gradient(to right,var(--brd2),var(--brd2));position:relative;overflow:hidden}
+    .wf-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--red);animation:wfFlow 2s linear infinite}
+    @keyframes wfFlow{to{left:100%}}
+
+    /* 5 — Security shields */
+    .shield-row{display:flex;gap:10px}
+    .shield{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.04);border:1px solid var(--brd);color:#555;transition:background .3s,border-color .3s,color .3s}
+    .shield.lit{background:var(--red-d);border-color:var(--red-b);color:var(--red)}
+
+    /* 6 — Integration logos grid */
+    .int-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;width:100%;max-width:220px}
+    .int-chip{height:30px;border-radius:7px;background:rgba(255,255,255,.05);border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.04em;animation:chipFade 3s ease-in-out infinite}
+    .int-chip:nth-child(2){animation-delay:.4s}
+    .int-chip:nth-child(3){animation-delay:.8s}
+    .int-chip:nth-child(4){animation-delay:1.2s}
+    .int-chip:nth-child(5){animation-delay:.2s}
+    .int-chip:nth-child(6){animation-delay:.6s}
+    .int-chip:nth-child(7){animation-delay:1.0s}
+    .int-chip:nth-child(8){animation-delay:1.4s}
+    @keyframes chipFade{0%,100%{opacity:.4;border-color:var(--brd)}50%{opacity:1;border-color:var(--brd2)}}
+
+    /* 7 — Strategy chart bars */
+    .chart-bars{display:flex;align-items:flex-end;gap:8px;height:80px}
+    .bar{width:22px;border-radius:4px 4px 0 0;background:linear-gradient(to top,var(--red),rgba(255,59,79,.3));transform-origin:bottom;animation:barGrow 1.8s ease-out forwards}
+    .bar:nth-child(1){height:45%;animation-delay:.1s}
+    .bar:nth-child(2){height:60%;animation-delay:.2s}
+    .bar:nth-child(3){height:78%;animation-delay:.3s}
+    .bar:nth-child(4){height:95%;animation-delay:.4s}
+    .bar:nth-child(5){height:85%;animation-delay:.5s}
+    @keyframes barGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+
+    /* ── SERVICES SECTION PREMIUM BG ── */
+    .svc-section{position:relative;overflow:hidden;background:#020306}
+    /* Animated dot grid */
+    .svc-grid-bg{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.045) 1px,transparent 1px);background-size:32px 32px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%);animation:gridShift 18s linear infinite;pointer-events:none;z-index:0}
+    @keyframes gridShift{0%{background-position:0 0}100%{background-position:32px 32px}}
+    /* Glow orbs */
+    .svc-orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;animation:orbDrift 12s ease-in-out infinite alternate}
+    .svc-orb-1{width:520px;height:520px;background:radial-gradient(circle,rgba(99,102,241,.18),transparent 70%);top:-120px;left:-80px}
+    .svc-orb-2{width:480px;height:480px;background:radial-gradient(circle,rgba(139,92,246,.15),transparent 70%);bottom:-100px;right:-60px;animation-delay:3s}
+    .svc-orb-3{width:360px;height:360px;background:radial-gradient(circle,rgba(59,130,246,.12),transparent 70%);top:40%;left:55%;transform:translate(-50%,-50%);animation-delay:6s}
+    @keyframes orbDrift{0%{transform:translate(0,0)}100%{transform:translate(30px,20px)}}
+    .svc-orb-3{animation:orbDrift3 14s ease-in-out infinite alternate}
+    @keyframes orbDrift3{0%{transform:translate(-50%,-50%)}100%{transform:translate(calc(-50% + 24px),calc(-50% + 18px))}}
+    /* Radial spotlight */
+    .svc-spotlight{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(99,102,241,.09),transparent 70%);pointer-events:none;z-index:0}
+    /* Keep content above all bg layers */
+    .svc-content{position:relative;z-index:1}
+
+    /* Glassy cards */
+    .gc.sc{
+      background:rgba(255,255,255,.04);
+      border-color:rgba(255,255,255,.08);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      transition:border-color .3s,background .3s,box-shadow .3s,transform .25s;
+    }
+    .gc.sc:hover{
+      background:rgba(255,255,255,.07);
+      border-color:rgba(139,92,246,.35);
+      box-shadow:0 0 28px rgba(99,102,241,.12),0 8px 32px rgba(0,0,0,.5);
+      transform:translateY(-2px);
+    }
+    /* Override the generic .gc hover so cards don't double-animate */
+    .svc-section .gc:hover{border-color:rgba(139,92,246,.35);transform:translateY(-2px);box-shadow:0 0 28px rgba(99,102,241,.12),0 8px 32px rgba(0,0,0,.5)}
 
     /* ── LIVE SYSTEM ── */
     .live-sys{background:var(--surf);border:1px solid var(--brd);border-radius:20px;overflow:hidden}
@@ -321,6 +428,20 @@
         <a href="#contact">Contact</a>
       </div>
       <div class="nav-r">
+        <div class="nav-soc">
+          <a href="https://www.instagram.com/aragonailab" target="_blank" rel="noopener" class="nav-soc-btn" aria-label="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/aragonailab" target="_blank" rel="noopener" class="nav-soc-btn" aria-label="LinkedIn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://www.facebook.com/aragonailab" target="_blank" rel="noopener" class="nav-soc-btn" aria-label="Facebook">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="mailto:trevor@aragonailab.com" class="nav-soc-btn" aria-label="Email">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
         <a href="mailto:trevor@aragonailab.com" class="nav-email">trevor@aragonailab.com</a>
         <a href="https://go.oncehub.com/TrevorAragon?skip=1" target="_blank" rel="noopener" class="btn btn-p" style="padding:9px 18px;font-size:14px">Book a Call</a>
       </div>
@@ -365,7 +486,14 @@
 </section>
 
 <!-- ══ SERVICES ══ -->
-<section id="services" class="section">
+<section id="services" class="section svc-section">
+  <!-- Background layers -->
+  <div class="svc-grid-bg" aria-hidden="true"></div>
+  <div class="svc-orb svc-orb-1" aria-hidden="true"></div>
+  <div class="svc-orb svc-orb-2" aria-hidden="true"></div>
+  <div class="svc-orb svc-orb-3" aria-hidden="true"></div>
+  <div class="svc-spotlight" aria-hidden="true"></div>
+  <div class="svc-content">
   <div class="container">
     <div class="sh m-hidden" id="sh-services">
       <span class="eyebrow">What We Build</span>
@@ -373,15 +501,139 @@
       <p>Every system is designed from first principles around your specific business — not adapted from a generic template.</p>
     </div>
     <div class="bento m-hidden" id="bento">
-      <div class="gc sc w4"><div class="gc-spot"></div><div class="svc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg></div><h3>AI Automation</h3><p>Eliminate the repetitive workflows draining your team's time. We identify, design, and deploy intelligent automations across your entire operation — from data entry to client communications.</p><span class="sc-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Most requested</span></div>
-      <div class="gc sc w2"><div class="gc-spot"></div><div class="svc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>AI Assistants &amp; Chatbots</h3><p>Intelligent assistants that handle inquiries, qualify leads, and support your team 24/7 — without adding headcount.</p></div>
-      <div class="gc sc w3"><div class="gc-spot"></div><div class="svc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg></div><h3>Custom AI Applications</h3><p>Bespoke internal tools, dashboards, and portals built for how your team actually works. No generic SaaS compromises.</p></div>
-      <div class="gc sc w3"><div class="gc-spot"></div><div class="svc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><h3>Workflow Optimization</h3><p>Deep analysis of your current processes to find where AI removes friction, reduces errors, and accelerates throughput.</p></div>
-      <div class="gc sc w2"><div class="gc-spot"></div><div class="svc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><h3>AI Strategy &amp; Consulting</h3><p>A clear roadmap for AI adoption — priorities, timelines, and an honest view of what will actually move the needle.</p></div>
-      <div class="gc sc w4"><div class="gc-spot"></div><div class="svc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><h3>Business Process Automation</h3><p>End-to-end automation of complete business processes — connecting your tools, systems, and data into a unified intelligent operation that runs with minimal human intervention.</p><span class="sc-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Highest ROI</span></div>
-      <div class="gc sc w6" style="flex-direction:row;align-items:center;gap:32px;padding:28px 36px"><div class="gc-spot"></div><div class="svc-icon" style="margin-bottom:0;flex-shrink:0" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div style="flex:1"><h3 style="margin-bottom:8px">AI Integrations</h3><p style="margin:0">Connect AI to your existing stack — CRM, ERP, email, Slack, Zapier, QuickBooks, and 200+ platforms. No ripping out what already works.</p></div><a href="https://go.oncehub.com/TrevorAragon?skip=1" target="_blank" rel="noopener" class="btn btn-s" style="flex-shrink:0">Talk to us</a></div>
+
+      <!-- 1. AI Automation — tall 2×2 -->
+      <div class="gc sc w2 tall"><div class="gc-spot"></div>
+        <div class="sc-vis">
+          <div class="auto-ring">
+            <div class="auto-pulse"></div>
+            <div class="auto-pulse"></div>
+            <div class="auto-pulse"></div>
+            <div class="auto-core">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="sc-copy">
+          <h3>AI Automation</h3>
+          <p>Eliminate repetitive workflows. We design and deploy intelligent automations across your entire operation.</p>
+          <span class="sc-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Most requested</span>
+        </div>
+      </div>
+
+      <!-- 2. AI Assistants — 2×1 -->
+      <div class="gc sc w2"><div class="gc-spot"></div>
+        <div class="sc-vis">
+          <div class="chat-wrap">
+            <div class="chat-bubble user b1">Can you follow up with that lead?</div>
+            <div class="chat-bubble ai b2">Done — email sent &amp; CRM updated.</div>
+            <div class="chat-bubble user b3">Perfect.</div>
+          </div>
+        </div>
+        <div class="sc-copy">
+          <h3>AI Assistants &amp; Chatbots</h3>
+          <p>Handle inquiries, qualify leads, and support your team 24/7 — without adding headcount.</p>
+        </div>
+      </div>
+
+      <!-- 3. Custom AI Apps — tall 2×2 -->
+      <div class="gc sc w2 tall"><div class="gc-spot"></div>
+        <div class="sc-vis">
+          <div class="app-win">
+            <div class="app-bar">
+              <div class="app-dot" style="background:#FF5F56"></div>
+              <div class="app-dot" style="background:#FEBC2E"></div>
+              <div class="app-dot" style="background:#28C840"></div>
+            </div>
+            <div class="app-body">
+              <div class="app-line a1"></div>
+              <div class="app-line a2"></div>
+              <div class="app-line a3"></div>
+              <div class="app-line a1" style="margin-top:4px"></div>
+              <div class="app-line a2"></div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-copy">
+          <h3>Custom AI Applications</h3>
+          <p>Bespoke internal tools, dashboards, and portals built exactly for how your team works.</p>
+        </div>
+      </div>
+
+      <!-- 4. Workflow Optimization — 2×1 -->
+      <div class="gc sc w2"><div class="gc-spot"></div>
+        <div class="sc-vis">
+          <div class="wf-wrap">
+            <div class="wf-node active" id="wfn1">Input</div>
+            <div class="wf-line"></div>
+            <div class="wf-node" id="wfn2">AI</div>
+            <div class="wf-line"></div>
+            <div class="wf-node" id="wfn3">Output</div>
+          </div>
+        </div>
+        <div class="sc-copy">
+          <h3>Workflow Optimization</h3>
+          <p>Identify where AI removes friction, reduces errors, and accelerates throughput.</p>
+        </div>
+      </div>
+
+      <!-- 5. Business Process — 3×1 -->
+      <div class="gc sc w3"><div class="gc-spot"></div>
+        <div class="sc-vis">
+          <div class="shield-row" id="shields">
+            <div class="shield lit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="shield"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+            <div class="shield"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/></svg></div>
+          </div>
+        </div>
+        <div class="sc-copy">
+          <h3>Business Process Automation</h3>
+          <p>End-to-end automation connecting your tools, systems, and data into a unified intelligent operation.</p>
+          <span class="sc-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Highest ROI</span>
+        </div>
+      </div>
+
+      <!-- 6. AI Strategy — 3×1 -->
+      <div class="gc sc w3"><div class="gc-spot"></div>
+        <div class="sc-vis">
+          <div class="chart-bars" id="chartBars">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+        </div>
+        <div class="sc-copy">
+          <h3>AI Strategy &amp; Consulting</h3>
+          <p>A prioritized roadmap with clear ROI projections — honest about what will actually move the needle.</p>
+        </div>
+      </div>
+
+      <!-- 7. AI Integrations — full width -->
+      <div class="gc sc w6" style="grid-row:span 1;flex-direction:row;align-items:center;gap:32px;padding:24px 32px"><div class="gc-spot"></div>
+        <div style="flex-shrink:0">
+          <div class="int-grid">
+            <div class="int-chip">CRM</div>
+            <div class="int-chip">Slack</div>
+            <div class="int-chip">QBO</div>
+            <div class="int-chip">ERP</div>
+            <div class="int-chip">Email</div>
+            <div class="int-chip">Zapier</div>
+            <div class="int-chip">Drive</div>
+            <div class="int-chip">200+</div>
+          </div>
+        </div>
+        <div style="flex:1">
+          <h3 style="margin-bottom:8px">AI Integrations</h3>
+          <p style="margin:0;font-size:14px;color:var(--muted)">Connect AI to your existing stack — CRM, ERP, email, Slack, Zapier, QuickBooks, and 200+ platforms. No ripping out what already works.</p>
+        </div>
+        <a href="https://go.oncehub.com/TrevorAragon?skip=1" target="_blank" rel="noopener" class="btn btn-s" style="flex-shrink:0">Talk to us</a>
+      </div>
+
     </div>
   </div>
+  </div><!-- /svc-content -->
 </section>
 
 <!-- ══ LIVE SYSTEM ══ -->
@@ -545,6 +797,54 @@
     </div>
   </div>
 </footer>
+
+<!-- ══ BENTO ANIMATIONS ══ -->
+<script>
+(function(){
+  /* Shield cycling */
+  var shields=document.querySelectorAll('#shields .shield');
+  var si=0;
+  function cycleShields(){
+    shields.forEach(function(s){s.classList.remove('lit')});
+    shields[si%shields.length].classList.add('lit');
+    si++;
+  }
+  cycleShields();
+  setInterval(cycleShields,900);
+
+  /* Workflow node highlight */
+  var wfNodes=[document.getElementById('wfn1'),document.getElementById('wfn2'),document.getElementById('wfn3')];
+  var wi=0;
+  function cycleWf(){
+    wfNodes.forEach(function(n){if(n)n.classList.remove('active')});
+    if(wfNodes[wi])wfNodes[wi].classList.add('active');
+    wi=(wi+1)%wfNodes.length;
+  }
+  setInterval(cycleWf,900);
+
+  /* Restart chart bars animation on scroll into view */
+  var chartBars=document.getElementById('chartBars');
+  if(chartBars&&window.IntersectionObserver){
+    new IntersectionObserver(function(entries){
+      if(entries[0].isIntersecting){
+        chartBars.querySelectorAll('.bar').forEach(function(b){
+          b.style.animation='none';
+          b.offsetHeight;
+          b.style.animation='';
+        });
+      }
+    },{threshold:.4}).observe(chartBars);
+  }
+
+  /* Chat bubbles loop */
+  function restartBubbles(){
+    document.querySelectorAll('.chat-bubble').forEach(function(b){
+      b.style.animation='none';b.offsetHeight;b.style.animation='';
+    });
+  }
+  setInterval(restartBubbles,4000);
+})();
+</script>
 
 <!-- ══ NAV SCROLL ══ -->
 <script>
