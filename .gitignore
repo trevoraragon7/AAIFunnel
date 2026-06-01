@@ -23,6 +23,7 @@ pnpm-debug.log*
 Thumbs.db
 .vscode/
 .idea/
+.claude/
 
 # Generated bundles and archives
 *.tar
